@@ -1,0 +1,55 @@
+@import '../../style.css';
+.navbar{
+    position: sticky;
+    z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+    display:flex;
+    justify-content: space-between;
+    font-weight:1000;
+    align-items: center;
+    padding:0.5rem;
+    cursor:pointer; 
+}
+.notLeftNav{
+    display: none;
+}
+.nav-icon{
+    display: flex;
+    margin-left:1rem;
+    align-items: center;
+}
+.nav-hambug{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  padding: 0.5rem;
+}
+.nav-link{
+    color:var(--primary-bg-color);
+    background-color: var(--secondary-color);
+    padding:0.5rem;
+    border-radius: 1em;
+}
+.hambug{
+    display: flex;
+    flex-direction: column;
+}
+.navbar-right{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.svg-img{
+    fill:var(--primary-bg-color);
+}
+.svg-img-black{
+    fill:var(--secondary-bg-color);
+}
+.navbar-theme{
+    padding:0.5rem;
+    border:none;
+    background-color: white;
+}
