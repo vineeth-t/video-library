@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import {useThemeContext} from '../../contexts/themeContext'
 import {LeftNav} from '../index'
 import './navBar.css';
@@ -14,10 +15,10 @@ const{theme,themeColor,themeChanger}=useThemeContext();
                         <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" >
                         </path>
                       </svg>
-                      {/* <NavLink to='/' className='nav-icon'> */}
+                      <NavLink to='/' className='nav-icon'>
                             <span className='nav-link'>FT</span>
                             <h2>FinTube</h2>
-                      {/* </NavLink> */}
+                      </NavLink>
                   </div>
                <div className='navbar-right'>
                       <div className='navbar-login' >
@@ -37,11 +38,7 @@ const{theme,themeColor,themeChanger}=useThemeContext();
                     </svg>
                     </button>
                  }
-
-
-                 
                 </div>
-     
             </nav>
          <LeftNav/>
       </>
