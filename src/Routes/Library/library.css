@@ -1,0 +1,26 @@
+.library-list{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    font-weight: 900;
+  
+}
+
+.library-list > div{
+    text-align: center;
+    cursor:pointer;
+    padding:3rem;
+    margin:2.5rem;
+    width:10rem;
+    height:7rem;
+    background-color: rgb(240, 73, 73);
+ 
+ 
+}
+.library-list > div:hover{
+    transform:scale(1.5,1.5);
+    transition: 1s ease-in-out;
+}
