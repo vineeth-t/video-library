@@ -1,8 +1,3 @@
-
-
-
-
-
 // import { useLibraryContext } from '../../Context';
 import { NavLink } from 'react-router-dom';
 import { useThemeContext } from '../../contexts/themeContext';
@@ -30,7 +25,7 @@ export function VideoCard({video}){
                         </div>
                       </div>  
                 </div>
- </NavLink>
+        </NavLink>
            
     )
 }
