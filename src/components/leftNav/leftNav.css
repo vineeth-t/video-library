@@ -44,3 +44,20 @@
     fill: var( --secondary-color);
     color: var( --secondary-color);
   }
+  .notLeftNav{
+    display: none;
+}
+@media screen and (max-width: 768px) {
+  .leftNav{
+    display: none;
+}
+.notLeftNav{
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.7rem;
+  height:200vh;
+  width:10rem;
+ 
+}
+}

@@ -1,16 +1,16 @@
 import { NavLink } from 'react-router-dom';
+import { useLibraryContext } from '../../contexts';
 import {useThemeContext} from '../../contexts/themeContext'
 import {LeftNav} from '../index'
 import './navBar.css';
 export function NavBar(){
-//const{state:{hambug,toast},dispatch}=useLibraryContext();
+const{state:{hambug,toast},dispatch}=useLibraryContext();
 const{theme,themeColor,themeChanger}=useThemeContext();
-
     return (  
        <>
          <nav  style={themeColor} className='navbar'>
             {/* //  <Toast msg={toast}/> */}
-                  <div className='nav-hambug' >
+                  <div className='nav-hambug' onClick={()=>hambug==='leftNav'?dispatch({type:'hambug',payload:'notLeftNav'}):dispatch({type:'hambug',payload:'leftNav'})}>
                       <svg className={theme==='light'?'svg-img-black':'svg-img'}  width="2em" height="2em" viewBox="0 0 24 24" >
                         <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" >
                         </path>

@@ -1,13 +1,12 @@
 import { NavLink } from 'react-router-dom';
+import { useLibraryContext } from '../../contexts';
 import { useThemeContext } from '../../contexts/themeContext';
 import './leftNav.css';
 export function LeftNav(){
   const{themeColor}=useThemeContext();
-  //const{state:{hambug}}=useLibraryContext();
-  //className={hambug}
-
+  const{state:{hambug}}=useLibraryContext();
     return (
-        <ul style={themeColor} className='leftNav' >
+        <ul style={themeColor}  className={hambug} >
           <NavLink end to='/'>
              <li className="leftNav-menuList">
             <svg className="svg-image" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8h5z" fill="currentcolor"></path></svg> 
