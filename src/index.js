@@ -9,8 +9,7 @@ ReactDOM.render(
       <ThemeContextProvider>
         <Router>
              <App/>
-         </Router>
-        
+         </Router> 
       </ThemeContextProvider>
       </StateContextProvider>
 
