@@ -1,2 +1,2 @@
-export {LibraryContextProvider,useLibraryContext} from './libraryProvider-context'
+export {StateContextProvider,useStateContext} from './stateProviderContext'
 export{ThemeContextProvider} from './themeContext'

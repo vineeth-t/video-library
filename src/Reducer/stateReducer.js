@@ -1,6 +1,6 @@
 // import { playlist } from "../Context/libraryProvider-context"
 import { videoList } from "../dataBase"
-export function reducer(state,action){
+export function stateReducer(state,action){
     switch(action.type){
         case 'likedVideo':
             if(state.likedVideo.some((video)=>video.id===action.videoId)){

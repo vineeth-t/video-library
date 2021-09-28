@@ -1,9 +1,9 @@
 import { createContext, useContext, useReducer, useState } from "react";
-import { reducer } from "../Reducer/reducer";
+import { stateReducer } from "../Reducer/stateReducer";
 export const LibraryContext=createContext()
 
-export function LibraryContextProvider({children}){
-const[state,dispatch]=useReducer(reducer, {
+export function StateContextProvider({children}){
+const[state,dispatch]=useReducer(stateReducer, {
                                               videoPlayingNow,
                                               likedVideo,
                                               watchLater,
@@ -13,12 +13,12 @@ const[state,dispatch]=useReducer(reducer, {
                                        )
                                  
    return( 
-   <LibraryContext.Provider value={{state,dispatch}}>
+   <StateContextProvider.Provider value={{state,dispatch}}>
         {children}
-    </LibraryContext.Provider>
+    </StateContextProvider.Provider>
    )
 }
-export function useLibraryContext(){
+export function useStateContext(){
    return useContext(LibraryContext)
 }
 export const videoPlayingNow={};

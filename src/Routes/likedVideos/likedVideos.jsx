@@ -1,7 +1,7 @@
-import {useLibraryContext} from '../../contexts/index'; 
+import {useStateContext} from '../../contexts/index'; 
 import { VerticalVideoCard } from '../../components/index';
 export function LikedVideos(){
-    const {state:{likedVideo}}=useLibraryContext();
+    const {state:{likedVideo}}=useStateContext();
     return(
         <div className='liked-videos'>
             {!likedVideo?<div style={{color:"white"}}>No liked Videos </div>:

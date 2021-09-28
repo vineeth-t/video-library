@@ -3,12 +3,12 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { VideoCard } from "../index";
 import './videoPlayer.css'
-import { useLibraryContext } from "../../contexts";
+import { useStateContext } from "../../contexts";
 export function getVideoFromDataBase(videoList,videoId){
   return videoList.find((video)=>video.id===videoId)
 }
 export function VideoPlayer() {
-  const{state:{likedVideo},dispatch}=useLibraryContext();
+  const{state:{likedVideo},dispatch}=useStateContext();
    let{videoId}=useParams();
    const videoPlayingNow=getVideoFromDataBase(videoList,videoId)
   const[playlistContainer,setPlaylistContainer]=useState(false)

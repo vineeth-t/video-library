@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import { useLibraryContext } from '../../contexts';
+import { useStateContext } from '../../contexts';
 import {useThemeContext} from '../../contexts/themeContext'
 import {LeftNav} from '../index'
 import './navBar.css';
 export function NavBar(){
-const{state:{hambug,toast},dispatch}=useLibraryContext();
+const{state:{hambug,toast},dispatch}=useStateContext();
 const{theme,themeColor,themeChanger}=useThemeContext();
     return (  
        <>

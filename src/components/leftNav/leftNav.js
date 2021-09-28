@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import { useLibraryContext } from '../../contexts';
+import { useStateContext } from '../../contexts';
 import { useThemeContext } from '../../contexts/themeContext';
 import './leftNav.css';
 export function LeftNav(){
   const{themeColor}=useThemeContext();
-  const{state:{hambug}}=useLibraryContext();
+  const{state:{hambug}}=useStateContext();
     return (
         <ul style={themeColor}  className={hambug} >
           <NavLink end to='/'>

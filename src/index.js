@@ -2,17 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom'
 import App from './App';
-import { ThemeContextProvider,LibraryContextProvider } from './contexts/index';
+import { ThemeContextProvider,StateContextProvider } from './contexts/index';
 ReactDOM.render(
   <React.StrictMode>
-    <LibraryContextProvider>
+    <StateContextProvider>
       <ThemeContextProvider>
         <Router>
              <App/>
          </Router>
         
       </ThemeContextProvider>
-      </LibraryContextProvider>
+      </StateContextProvider>
 
   </React.StrictMode>,
   document.getElementById('root')
