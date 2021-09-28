@@ -6,7 +6,6 @@ export function VideoCard({video}){
     const {id,name,views,UploadedDate,likes,channelName,img}=video;
     const{themeColor}=useThemeContext()
     // const {dispatch}=useLibraryContext();
- 
     return(
     <NavLink to={`/videoPlayer/${id}`}>
              <div style={themeColor} className='video-card'>
