@@ -1,2 +1,2 @@
 export {StateContextProvider,useStateContext} from './stateProviderContext'
-export{ThemeContextProvider} from './themeContext'
+export{ThemeContextProvider,useThemeContext} from './themeContext'

@@ -1,0 +1,33 @@
+@import '../../../style.css';
+.videoCard-vertical{
+     display: flex;
+     flex-direction: row;
+     width:500px;
+     margin-top:1rem;
+     padding:0.5rem;
+}
+.videoCard-thumbanil{
+    width:15rem;
+    margin-right: 1rem;
+}
+.videoCard-details{
+  
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+.btn-primary{
+    background-color: inherit;
+    border:none;
+}
+@media screen and (max-width: 768px){
+    .videoCard-vertical{
+        width:300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width:auto;
+        padding:0.5rem;
+   }
+}

@@ -1,15 +1,17 @@
 import {useStateContext} from '../../contexts/index'; 
 import { VerticalVideoCard } from '../../components/index';
+import './likedVideos.css'
 export function LikedVideos(){
     const {state:{likedVideo}}=useStateContext();
     return(
-        <div className='liked-videos'>
-            {!likedVideo?<div style={{color:"white"}}>No liked Videos </div>:
-            <div>
+        < >
+            {likedVideo.length===0?
+                <h3 style={{textAlign:"center"}}>No liked Videos </h3>:
+            <div className='liked-videos'>
                 {likedVideo.map((video)=>{return <VerticalVideoCard video={video}/>})}
-                </div>
+             </div>
 }        
-        </div>
+        </>
 
     )
 }

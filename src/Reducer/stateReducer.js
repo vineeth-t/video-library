@@ -11,6 +11,8 @@ export function stateReducer(state,action){
             }
              //Instead of this we can use server calling to get likedVideos 
             return {...state,likedVideo:[...state.likedVideo,videoList.find((video)=>video.id===action.videoId)],toast:'Video Liked'}
+            case 'removeFromLikedVideos':
+                return {...state,likedVideo:[...state.likedVideo.filter((video)=>video.id!=action.videoId)]}
         case 'watchLater':
             if(state.watchLater.some((video)=>video.id===action.video.id)){
                 return {
@@ -22,6 +24,7 @@ export function stateReducer(state,action){
             return {...state,hambug:action.payload}
         case 'removeToast':
             return{...state,toast:''}
+        
         // case 'createNewPlaylist':
         //     return {...state,playlist:playlist.concat(action.name)}
     }

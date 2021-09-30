@@ -1,13 +1,14 @@
 .liked-videos{
     text-align: center;
+    width:600px;
+    margin:auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center; 
     align-items: center;
-    justify-content: center;
 }
-@media screen and(max-width:765px) {
+@media screen and (max-width:765px) {
     .liked-videos{
-        display:flex;
-        flex-direction: column;
+        width: 350px;
     }
 }

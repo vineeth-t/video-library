@@ -13,7 +13,7 @@
     width:18rem;
 }
 .thumbnail{
-    width:18rem;
+    width:16rem;
 }
 .profile-icon{
     border-radius:50%;
@@ -33,10 +33,7 @@
     justify-content: flex-start;
     width:100%;
 }
-.video-card-vertical{
-    display:flex;
-    flex-direction: column;
-}
+
 @media screen and (max-width: 768px) {
     .video-list{
         display: flex;

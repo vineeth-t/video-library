@@ -9,7 +9,7 @@
   
 }
 
-.library-list > div{
+.library-link{
     text-align: center;
     cursor:pointer;
     padding:3rem;
@@ -17,10 +17,8 @@
     width:10rem;
     height:7rem;
     background-color: rgb(240, 73, 73);
- 
- 
 }
-.library-list > div:hover{
+.library-link:hover{
     transform:scale(1.5,1.5);
     transition: 1s ease-in-out;
 }
