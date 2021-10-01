@@ -1,0 +1,39 @@
+@import '../../style.css';
+.playlist-card{
+    position: absolute; 
+    bottom:-5.5rem;
+    left:35rem;
+    border: 1px solid var(--secondary-bg-color);
+    height:100px;
+}
+.playlist{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+ 
+}
+input[type='text']{
+    color:white;
+}
+.playlist-creator{
+    display: flex;
+    flex-direction: column;
+}
+.btn-submit{
+    color:red;
+    border:none;
+   
+
+}
+@media screen and (max-width: 768px){
+    .playlist-card{ 
+        top:7rem;
+        left:7rem;
+        height:100px;
+        width:fit-content
+    }
+    .playlist{
+        padding: 0.5rem;
+    }
+}

@@ -1,4 +1,4 @@
-import { useStateContext,useThemeContext } from '../../../contexts/index';
+import { useStateContext,useThemeContext } from '../../contexts/index';
 import './verticalCard.css'
 export function VerticalVideoCard({video}){
     const {id,name,views,UploadedDate,likes,channelName,img}=video;

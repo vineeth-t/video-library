@@ -3,6 +3,7 @@ import { VerticalVideoCard } from '../../components/index';
 import './likedVideos.css'
 export function LikedVideos(){
     const {state:{likedVideo}}=useStateContext();
+    console.log('x')
     return(
         < >
             {likedVideo.length===0?

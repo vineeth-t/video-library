@@ -4,15 +4,15 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import App from './App';
 import { ThemeContextProvider,StateContextProvider } from './contexts/index';
 ReactDOM.render(
+
   <React.StrictMode>
-    <StateContextProvider>
       <ThemeContextProvider>
+       <StateContextProvider>
         <Router>
              <App/>
          </Router> 
+         </StateContextProvider>
       </ThemeContextProvider>
-      </StateContextProvider>
-
   </React.StrictMode>,
   document.getElementById('root')
 );

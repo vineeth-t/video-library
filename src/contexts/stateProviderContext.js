@@ -1,14 +1,13 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { stateReducer } from "../Reducer/stateReducer";
 export const StateContext=createContext()
-
 export function StateContextProvider({children}){
+   console.log('contcxt')
 const[state,dispatch]=useReducer(stateReducer, {
                                               videoPlayingNow,
                                               likedVideo,
                                               watchLater,
-                                              hambug,toast,history,
-                                              playlist
+                                              hambug,toast,history,playlist
                                           }
                                        )
                                  
