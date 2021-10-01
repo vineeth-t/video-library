@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import { useStateContext } from "../../contexts/index";
 import './toast.css'
-export function Toast({msg}){
-    const{dispatch}=useStateContext();
+export function Toast(){
+    const{state:{toast},dispatch}=useStateContext();
     useEffect(()=>{
         let timeOut=setTimeout(()=>{
          dispatch({type:'removeToast'})
@@ -10,10 +10,10 @@ export function Toast({msg}){
         return()=>{
             clearTimeout(timeOut)
         } 
-    })
+    },[toast])
     return (
         <div className='toast'>
-            <h5>{msg}</h5>
+            <h5>{toast}</h5>
         </div>
     )
 }

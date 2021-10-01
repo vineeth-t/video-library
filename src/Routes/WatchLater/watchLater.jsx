@@ -7,7 +7,7 @@ export function WatchLater(){
         return(
             <div className='watch-later'>
                   {watchLater.length===0&&<div style={{color:"white"}}>Add here to watch later </div>}
-               {watchLater.map((video)=>{<VerticalVideoCard video={video}/>})}
+               {watchLater.map((video)=><VerticalVideoCard video={video}/>)}
             </div>
         )
 

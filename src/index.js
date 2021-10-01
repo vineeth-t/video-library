@@ -11,7 +11,7 @@ ReactDOM.render(
         <Router>
              <App/>
          </Router> 
-         </StateContextProvider>
+        </StateContextProvider>
       </ThemeContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
