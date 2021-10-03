@@ -14,7 +14,7 @@ export function VideoPlayer() {
   const[playlistContainer,setPlaylistContainer]=useState(false)
   return(
   <div className='media-player-body'>
-        {playlistContainer&&<CreatePlaylist videoId={videoId}/>}
+        {playlistContainer&&<CreatePlaylist setPlaylistContainer={setPlaylistContainer} videoId={videoId}/>}
        <div className="media-player">
               <iframe className='media-iframe'
                        src={`https://www.youtube.com/embed/${videoPlayingNow.id}`}

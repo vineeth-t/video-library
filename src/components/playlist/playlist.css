@@ -1,39 +1,50 @@
 @import '../../style.css';
 .playlist-card{
-    position: absolute; 
-    bottom:-5.5rem;
-    left:35rem;
-    border: 1px solid var(--secondary-bg-color);
-    height:100px;
+    position: fixed; 
+    z-index: 1; 
+    top:0;
+    left:0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7)
 }
 .playlist{
-    padding: 1rem;
+    background-color: white;
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+    font-weight: 900;
+    top:10rem;
  
 }
 input[type='text']{
-    color:white;
+    color:inherit;
+    font-weight: 900;
 }
 .playlist-creator{
     display: flex;
     flex-direction: column;
+    font-weight: 900;
 }
 .btn-submit{
-    color:red;
+    color:black;
+    background-color: inherit;
+    font-weight: 900;
     border:none;
-   
-
+}
+.btn-create{
+    width:5rem;
+    margin:auto;
+    font-weight: 900;
+    background-color: inherit;
 }
 @media screen and (max-width: 768px){
-    .playlist-card{ 
-        top:7rem;
-        left:7rem;
-        height:100px;
-        width:fit-content
-    }
     .playlist{
-        padding: 0.5rem;
+        width:50%
     }
 }

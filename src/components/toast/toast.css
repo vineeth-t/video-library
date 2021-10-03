@@ -1,9 +1,11 @@
 .toast{
     position: fixed;
-    font-size: x-large;
+    font-size: large;
     top:1rem;
-    right:5rem; 
-    padding:0.5rem;
+    right:5rem;
     text-align: center;
-    color:red;
+    padding:0.5rem;
+    color:rgb(221, 213, 213);
+    background-color: black;
+    border:2px solid rgb(221, 213, 213);
 }
