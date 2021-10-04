@@ -1,5 +1,4 @@
 import {  useState } from 'react';
-import {  useLocation, useNavigate } from 'react-router';
 import './loginCard.css'
 export function Login(){
     const[userName,setUserName]=useState('');

@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import {
   Home,
   Library,
-  LikedVideos,
   PrivateRoute,
   WatchLater
 } from "./Routes/index";
@@ -10,7 +9,7 @@ import { NavBar } from "../src/components/index";
 import { useThemeContext } from "./contexts/themeContext";
 import { VideoPlayer } from "./components/index";
 import { Login } from "./components/loginCard/login";
-
+import{LikedVideos} from './Routes/LikedVideos/likedVideos'
 function App() {
   const { themeColor } = useThemeContext();
   return (
@@ -22,7 +21,7 @@ function App() {
         <Route path="/videoPlayer/:videoId" element={<VideoPlayer />} />
         <Route path="/login" element={<Login />} />
         <PrivateRoute path="/library" element={<Library />} />
-        <PrivateRoute path="/likedVideos" element={<LikedVideos />} />
+        <PrivateRoute path="/likedVideos" element={<LikedVideos/>} />
         <PrivateRoute path="/watchLater" element={<WatchLater />} />
       </Routes>
     </div>
