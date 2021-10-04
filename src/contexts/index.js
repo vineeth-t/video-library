@@ -1,3 +1,3 @@
 export { StateContextProvider, useStateContext } from "./stateProviderContext";
 export { ThemeContextProvider, useThemeContext } from "./themeContext";
-export { AuthProvider, useAuthCOntext } from "./authContext";
+export { AuthProvider, useAuthContext } from "./authContext";
