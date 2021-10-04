@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import {
+  LikedVideos,
   Home,
   Library,
   PrivateRoute,
@@ -9,7 +10,7 @@ import { NavBar } from "../src/components/index";
 import { useThemeContext } from "./contexts/themeContext";
 import { VideoPlayer } from "./components/index";
 import { Login } from "./components/loginCard/login";
-import{LikedVideos} from './Routes/LikedVideos/likedVideos'
+
 function App() {
   const { themeColor } = useThemeContext();
   return (
