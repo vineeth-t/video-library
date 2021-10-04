@@ -1,25 +1,29 @@
 
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import{Home, Library, LikedVideos, WatchLater} from './Routes/index'
 import {NavBar} from '../src/components/index'
 import { useThemeContext } from './contexts/themeContext';
 import { VideoPlayer } from './components/index';
+import { Login } from './components/loginCard/login';
 function App() {
+  function PrivateRoute({props}){
+    //  return <Route {...props}/>
+  }
   const{themeColor}=useThemeContext();
       return (
         <div style={themeColor} className="App">
         <NavBar/>
+        
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/videoPlayer/:videoId' element={<VideoPlayer/>}/>
-          <Route path='/library' element={<Library/>}/>
-          <Route path='/likedVideos' element={<LikedVideos/>}/>
-          <Route path='/watchLater' element={<WatchLater/>}/>
-          {/* 
-       
-          <Route path='/history' element={<History/>}/> */}
-        </Routes>
-        </div>
-      );
+          <Route path='/login' element={<Login/>}/>
+          <PrivateRoute  path='/library' element={<Library/>}/>
+          <PrivateRoute path='/likedVideos' element={<LikedVideos/>}/>
+          <PrivateRoute path='/watchLater' element={<WatchLater/>}/>
+      </Routes>
+    </div>
+  );
+          
     }
 export default App;

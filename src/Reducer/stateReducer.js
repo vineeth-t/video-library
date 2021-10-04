@@ -32,7 +32,7 @@ export function stateReducer(state,action){
             let videoToBeAddedInThePlaylist={...state.playlist.find((playlist)=>playlist.playlistId===action.playlistId)};
             let videoId=action.videoId
            return {...state,playlist:[{...videoToBeAddedInThePlaylist,
-                                                    listOfVideos:[videoToBeAddedInThePlaylist.listOfVideos,{videoId}]}
+                                                    listOfVideos:[videoToBeAddedInThePlaylist.listOfVideos,videoId]}
                     ]}
     }
 }

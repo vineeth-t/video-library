@@ -1,0 +1,42 @@
+.loginCard{
+    margin: auto;
+    font-weight: 900;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    width:400px;
+    height:300px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top:4rem;
+   
+}
+input[type='text']{
+    font-weight: 900;
+}
+input[type='password']{
+    font-weight: 900;
+}
+    
+.loginCard >div{
+    margin:2rem 1rem 0 1rem;
+}
+.btn-logIn{
+    border:none;
+    background-color: red;
+    margin-top:1rem;
+    color:white;
+    padding:0.5rem;
+}
+.btn-logIn:hover{
+    font-weight: 900;
+}
+@media screen and (max-width: 768px){
+    .loginCard{
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+        width:350px;
+        height:300px;
+        align-items: center;
+        
+    }
+}
