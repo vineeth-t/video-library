@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { useStateContext, useThemeContext } from "../../contexts";
+import { useStateContext } from "../../contexts";
 import './playlist.css'
 export function playlistCreator(dispatch,videoId,newPlayListName,setNewPlayListName){
     console.log(newPlayListName)

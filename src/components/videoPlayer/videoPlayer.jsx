@@ -43,7 +43,7 @@ export function VideoPlayer() {
                     </div>
                </div>
                <div className='profile-info'>
-                <img className='profile-icon' src={`${videoPlayingNow.img}`}/>
+                <img className='profile-icon' src={`${videoPlayingNow.img}`} alt='profile-icon'/>
                 <div className='user-profile'>
                   <h5>{videoPlayingNow.channelName}</h5>
                   <p>11k subscribers</p>

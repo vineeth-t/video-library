@@ -1,7 +1,7 @@
 import { useStateContext,useThemeContext } from '../../contexts/index';
 import './verticalCard.css'
 export function VerticalVideoCard({video}){
-    const {id,name,views,UploadedDate,likes,channelName,img}=video;
+    const {id,name,views,UploadedDate,channelName}=video;
     const{themeColor}=useThemeContext();
     const{dispatch}=useStateContext()
     return( 

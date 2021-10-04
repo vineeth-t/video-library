@@ -2,7 +2,8 @@ import {  useState } from 'react';
 import './loginCard.css'
 export function Login(){
     const[userName,setUserName]=useState('');
-    const[password,setPassword]=useState('')
+    const[password,setPassword]=useState('');
+    console.log(userName,password)
     return(
         
         // <>{loginStatus?.userLoginStatus?<div>
