@@ -13,6 +13,7 @@
 }
 input[type='text']{
     font-weight: 900;
+    color:black
 }
 input[type='password']{
     font-weight: 900;
@@ -30,6 +31,10 @@ input[type='password']{
 }
 .btn-logIn:hover{
     font-weight: 900;
+}
+.login-details{
+    display: flex;
+    align-items: center;
 }
 @media screen and (max-width: 768px){
     .loginCard{
