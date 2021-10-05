@@ -1,19 +1,21 @@
 import { createContext, useContext, useState } from "react";
-const User={
-  name:'tanay',
-  password:'god'
-}
+import { AuthApi } from "../api/AuthApi";
+
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [login, setLogin] = useState(false);
   
-  function loginInWithCredentials(state,userName,password,navigate){
-        if(User.name===userName && User.password===password){
-          setLogin(true);
-          navigate(state?.from?state.from:'/login')
-        }else{
-          alert('In-valid Credentials')
+  async function loginInWithCredentials(state,userName,password,navigate){
+        try{
+          const response= await AuthApi(userName,password);
+          if(response?.success){
+            setLogin(true)
+            navigate(state?.from?state.from:'/login')
+          }
+        }catch(error){
+          alert('In valid Credentials')
+          navigate('/login')
         }
     }
   return (
