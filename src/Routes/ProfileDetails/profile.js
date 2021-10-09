@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router"
+import { useNavigate } from "react-router"
 import { useAuthContext } from "../../contexts"
 
 export function Profile(){

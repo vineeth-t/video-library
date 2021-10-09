@@ -1,4 +1,3 @@
-import { useState } from "react"
 import './signUpCard.css'
 export function InputFieldForPassword({formDispatch,mask,clearingError,type}){
     return <input
