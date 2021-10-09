@@ -8,7 +8,7 @@ import { InputFieldForPassword, Mask } from "./inputFieldForPAssword";
 import './signUpCard.css'
 export function SignUp(){
   const navigate = useNavigate();
-  const{dispatch}=useAuthContext()
+  const{state:{login},dispatch}=useAuthContext()
   const [formState, formDispatch] = useReducer(signUpreducer, {
     fname: "",
     lname: "",
@@ -35,7 +35,7 @@ export function SignUp(){
                                 } 
                                 
                               }
-  return (
+  return (login ? <Navigate to='/profile'/>: 
       <div className="signup">
         <h2>SIGN-UP</h2><br/>
         <h4>sign up to watch amazing videos</h4><br/>
