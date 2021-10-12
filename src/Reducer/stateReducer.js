@@ -12,14 +12,8 @@ export function stateReducer(state,action){
             return {...state,likedVideo:[...state.likedVideo,videoList.find((video)=>video.id===action.videoId)],toast:'Video Liked'}
         case 'removeFromLikedVideos':
                 return {...state,likedVideo:[...state.likedVideo.filter((video)=>video.id!==action.videoId)]}
-        case 'watchLater':
-            if(state.watchLater.some((video)=>video.id===action.videoId)){
-                return {
-                    ...state,toast:'alreadyInWatchLater',watchLater:[...state.watchLater.filter((video)=>video.id!==action.videoId)]
-                }
-            }
               //Instead of this we can use server calling to get likedVideos 
-            return {...state,watchLater:[...state.watchLater,videoList.find((video)=>video.id===action.videoId)],toast:'Added To WatchLater'}
+           
         case 'hambug':
             return {...state,hambug:action.payload}
         case 'removeToast':
@@ -27,12 +21,12 @@ export function stateReducer(state,action){
         default:
             return {...state}
         case 'createNewPlaylist':
-            return {...state,playlist:[...state.playlist,action.payload],toast:'Playlist Created'}
-        case 'addToPlayList':
-            let videoToBeAddedInThePlaylist={...state.playlist.find((playlist)=>playlist.playlistId===action.playlistId)};
-            let videoId=action.videoId
-           return {...state,playlist:[{...videoToBeAddedInThePlaylist,
-                                                    listOfVideos:[videoToBeAddedInThePlaylist.listOfVideos,videoId]}
-                    ]}
+            return {...state,playlists:[...state.playlists,action.payload],toast:'Playlist Created'}
+        case 'addToPlaylist':
+            let playlistIndex=state.playlists.findIndex((playlist)=>playlist.playlistId===action.playlistId)
+            state.playlists[playlistIndex]={...state.playlists[playlistIndex],
+                                            listOfVideos:[...state.playlists[playlistIndex].listOfVideos,
+                                             action.videoPlayingNow]}
+            return state;
     }
 }

@@ -1,5 +1,5 @@
 import { useReducer, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate,Navigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../contexts/authContext";
 import { errorHandler, formChecker } from "../../Reducer/formErrorReducer";
@@ -23,11 +23,7 @@ export function SignUp(){
     errorDispatch({type,payload:''})
   }
 
-  function signUpHandler(
-                            e,
-                            fname
-                          )
-                              {
+  function signUpHandler(e,fname){
                                 e.preventDefault();
                                 if (formChecker(formState,errorDispatch)) {
                                   dispatch({type:'LOGIN',payload:fname})

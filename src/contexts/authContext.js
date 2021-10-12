@@ -8,7 +8,7 @@ useEffect(()=>{
  if(loginStatus?.isUserLoggedIn){
    dispatch({type:'LOGIN',payload:loginStatus.userName})
  }
-})
+},[])
   const[state,dispatch]=useReducer(loginReducer, {
                                                     login:false,
                                                     userName:'',

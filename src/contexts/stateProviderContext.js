@@ -5,11 +5,15 @@ export function StateContextProvider({children}){
 const[state,dispatch]=useReducer(stateReducer, {
                                               videoPlayingNow:{},
                                               likedVideo:[],
-                                              watchLater:[],
                                               hambug:'leftNav',
                                               toast:'',
                                               history:[],
-                                              playlist:[]
+                                              playlists:[{
+                                                playListName:'WatchLater',
+                                                playListId:1,
+                                                listOfVideos:[]
+                                                
+                                                }]
                                           }
                                        )
                                  

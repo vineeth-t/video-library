@@ -3,11 +3,12 @@ import { useStateContext } from "../../contexts";
 import './watchLater.css'
 
 export function WatchLater(){
-        const {state:{watchLater}}=useStateContext();
+        const {state:{playlists}}=useStateContext();
+        const watchLater=playlists.find((playlist)=>playlist.playListName==='WatchLater')
         return(
             <div className='watch-later'>
-                  {watchLater.length===0&&<div style={{color:"white"}}>Add here to watch later </div>}
-               {watchLater.map((video)=><VerticalVideoCard video={video}/>)}
+                  {watchLater&&<div style={{color:"black"}}>Add here to watch later </div>}
+               {watchLater.listOfVideos.map((video)=><VerticalVideoCard video={video}/>)}
             </div>
         )
 
