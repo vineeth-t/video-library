@@ -6,7 +6,7 @@ export function playlistCreator(dispatch,videoPlayingNow,newPlayListName,setNewP
     if(newPlayListName===''||newPlayListName===undefined ){
         alert('Enter a name')
     }else{
-        dispatch({type:'createNewPlaylist',payload:{name:newPlayListName,playlistId:newPlayListName,listOfVideos:[videoPlayingNow]}})
+        dispatch({type:'createNewPlaylist',payload:{playListName:newPlayListName,playlistId:newPlayListName,listOfVideos:[videoPlayingNow]}})
         setNewPlayListName('')
     }
    

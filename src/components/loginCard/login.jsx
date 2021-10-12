@@ -13,7 +13,6 @@ export function Login(){
         loginInWithCredentials(state,userName,password,navigate);
     }
     return(
-        
         <>
         {login?<Profile/>:
             <form className='loginCard' onSubmit={(event)=>loginHandler(event,state,userName,password,navigate)}>

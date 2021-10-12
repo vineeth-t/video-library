@@ -28,5 +28,11 @@ export function stateReducer(state,action){
                                             listOfVideos:[...state.playlists[playlistIndex].listOfVideos,
                                              action.videoPlayingNow]}
             return state;
+        case 'removeFromPlaylist':
+           
+            let removePlaylistIndex=state.playlists.findIndex((playlist)=>playlist.playlistId===action.playlistId)
+            state.playlists[removePlaylistIndex]={...state.playlists[removePlaylistIndex],
+                                             listOfVideos:[...state.playlists[removePlaylistIndex].listOfVideos.filter((video)=>video.id!==action.videoId)]}
+          return {...state,playlists:[...state.playlists,state.playlists[removePlaylistIndex]]}
     }
 }
