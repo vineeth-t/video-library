@@ -2,19 +2,18 @@ import { createContext, useContext, useReducer } from "react";
 import {loginReducer} from '../Reducer/loginReducer'
 import { AuthApi } from "../api/AuthApi";
 const AuthContext = createContext();
-let login=false;
-let userName;
-const loginStatus=JSON.parse(localStorage.getItem('login'))
-  if(loginStatus?.isUserLoggedIn){
-          login=true
-          userName=loginStatus.userName;
-          }
+
 export function AuthProvider({ children }) {
   const[state,dispatch]=useReducer(loginReducer, {
                                                     login,
                                                     userName,
                                                     password:''
-                                                  })       
+                                                  })  
+ const loginStatus=JSON.parse(localStorage.getItem('login'))
+  if(loginStatus?.isUserLoggedIn){
+          login=true
+          userName=loginStatus.userName;
+ }     
 async function loginInWithCredentials(state,userName,password,navigate){
                try{
                 const response= await AuthApi(userName,password);
@@ -37,3 +36,5 @@ async function loginInWithCredentials(state,userName,password,navigate){
 export function useAuthContext() {
   return useContext(AuthContext);
 }
+export let login=false;
+export let userName='';

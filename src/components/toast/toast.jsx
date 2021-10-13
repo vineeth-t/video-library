@@ -5,7 +5,7 @@ export function Toast(){
     const{state:{toast},dispatch}=useStateContext();
     useEffect(()=>{
         let timeOut=setTimeout(()=>{
-         dispatch({type:'removeToast'})
+         dispatch({type:'REMOVE_TOAST'})
         },2000)
         return()=>{
             clearTimeout(timeOut)

@@ -3,10 +3,9 @@ import { useStateContext } from "../../contexts";
 import './watchLater.css'
 
 export function WatchLater(){
-        let type='removeFromPlaylist'
+        let type='REMOVE_FROM_PLAYLIST'
         const {state:{playlists}}=useStateContext();
         const watchLater=playlists.find((playlist)=>playlist.playListName==='WatchLater')
-        console.log("state from watchlater",playlists,watchLater)
         return(
             <div className='watch-later'>
                   {watchLater&&<div style={{color:"black"}}>Add here to watch later </div>}

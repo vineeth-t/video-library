@@ -1,7 +1,6 @@
 import { useStateContext,useThemeContext } from '../../contexts/index';
 import './verticalCard.css'
 export function VerticalVideoCard({video,type,playListId}){
-    console.log({video,type,playListId})
     const {id,name,views,UploadedDate,channelName}=video;
     const{themeColor}=useThemeContext();
     const{dispatch}=useStateContext()

@@ -3,7 +3,7 @@ import { VerticalVideoCard } from '../../components/index';
 import './likedVideos.css'
 export function LikedVideos(){
     const {state}=useStateContext();
-    let type='removeFromLikedVideos'
+    let type='REMOVE_FROM_LIKED_VIDEOS'
     return(
         < >
             {state.likedVideo.length===0?

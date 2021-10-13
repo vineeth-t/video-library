@@ -2,20 +2,20 @@
 import { useState } from "react";
 import { useStateContext } from "../../contexts";
 import './playlist.css'
-export function playlistCreator(dispatch,videoPlayingNow,newPlayListName,setNewPlayListName){
-    if(newPlayListName===''||newPlayListName===undefined ){
-        alert('Enter a name')
-    }else{
-        dispatch({type:'createNewPlaylist',payload:{playListName:newPlayListName,playlistId:newPlayListName,listOfVideos:[videoPlayingNow]}})
-        setNewPlayListName('')
-    }
-   
-}
-export function CreatePlaylist({videoPlayingNow,setPlaylistContainer}){
+import { Playlists } from "./showPlaylists";
+export function CreateNewPlaylist({videoPlayingNow,setPlaylistContainer}){
     const {dispatch}=useStateContext();
     const[createNewPlaylist,setNewPlaylist]=useState(false);
     const[newPlayListName,setNewPlayListName]=useState()
-    
+    function playlistCreator(dispatch,videoPlayingNow,newPlayListName,setNewPlayListName){
+        if(newPlayListName===''||newPlayListName===undefined ){
+            alert('Enter a name')
+        }else{
+            dispatch({type:'CREATE_NEW_PLAYLIST',payload:{playListName:newPlayListName,playlistId:newPlayListName,listOfVideos:[videoPlayingNow]}})
+            setNewPlayListName('')
+        }
+       
+    }  
 return(
     <div className='playlist-card'>
         <div className='playlist'>
@@ -37,11 +37,3 @@ return(
         </div> 
     </div>)
 }
-function Playlists({videoPlayingNow}) {
-    const {state:{playlists},dispatch}=useStateContext();
-  return  playlists.map(({playListName,playlistId})=>(
-       <label style={{color:'black'}} >    
-            <input type='checkbox' onChange={()=>dispatch({type:'addToPlaylist',playlistId:playlistId,videoPlayingNow:videoPlayingNow})}/>
-            <span>{playListName}</span>
-        </label>
-  ))}
