@@ -1,4 +1,4 @@
-.liked-videos{
+.playlist-videos{
     text-align: center;
     width:600px;
     margin:auto;
@@ -8,7 +8,7 @@
     align-items: center;
 }
 @media screen and (max-width:765px) {
-    .liked-videos{
+    .playlist-videos{
         width: 350px;
     }
 }

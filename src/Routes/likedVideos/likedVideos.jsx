@@ -8,7 +8,7 @@ export function LikedVideos(){
         < >
             {state.likedVideo.length===0?
                 <h3 style={{textAlign:"center"}}>No liked Videos </h3>:
-            <div className='liked-videos'>
+            <div className='playlist-videos'>
                 {state.likedVideo.map((video)=>{return <VerticalVideoCard  type={type}video={video}/>})}
              </div>
 }        
