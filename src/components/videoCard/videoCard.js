@@ -1,13 +1,14 @@
-// import { useLibraryContext } from '../../Context';
+import {useStateContext} from '../../contexts/index'
 import { NavLink } from 'react-router-dom';
 import { useThemeContext } from '../../contexts/themeContext';
 
 export function VideoCard({video}){
+    const{dispatch}=useStateContext()
     const {id,name,views,UploadedDate,channelName,img}=video;
     const{themeColor}=useThemeContext()
     return(
     <NavLink to={`/videoPlayer/${id}`}>
-             <div style={themeColor} className='video-card'>
+             <div style={themeColor} className='video-card' onClick={()=>dispatch({type:'HISTORY',payload:video})}>
                       <img className='thumbnail' src={`https://img.youtube.com/vi/${id}/mqdefault.jpg`} alt='thumbnail' />
                       <div className='video-details'>
                             <div>

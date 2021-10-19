@@ -1,6 +1,14 @@
 import { videoList } from "../dataBase"
 export function stateReducer(state,action){
     switch(action.type){
+        case 'HISTORY':
+            return {
+                ...state,history:[...state.history,action.payload]
+            }
+        case 'REMOVE_FROM_HISTORY':
+            return {
+                ...state,history:[...state.history.filter((video)=>video.id!==action.videoId)]
+            }
         case 'LIKED_VIDEO':
             if(state.likedVideo.some((video)=>video.id===action.videoId)){
                 return {

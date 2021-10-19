@@ -4,3 +4,4 @@ export { WatchLater } from "./WatchLater/watchLater";
 export { PrivateRoute } from "./PrivateRoute/PrivateRoute";
 export {LikedVideos} from './likedVideos/likedVideos'
 export {Profile} from './ProfileDetails/profile'
+export {History} from './History/history'

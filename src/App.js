@@ -5,7 +5,8 @@ import {
   Library,
   PrivateRoute,
   WatchLater,
-  Profile
+  Profile,
+  History
 } from "./Routes/index";
 import { NavBar } from "../src/components/index";
 import { useThemeContext } from "./contexts/themeContext";
@@ -27,6 +28,7 @@ function App() {
         <PrivateRoute path="/library" element={<Library />} />
         <PrivateRoute path="/likedVideos" element={<LikedVideos/>} />
         <PrivateRoute path="/watchLater" element={<WatchLater />} />
+        <PrivateRoute path='/history' element={<History/>}/>
       </Routes>
     </div>
   );
