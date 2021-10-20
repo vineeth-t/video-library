@@ -9,8 +9,8 @@ export const blackColor={
     color:'rgba(255, 255, 255, 0.575)'
     }
 export function ThemeContextProvider({children}){
-    const[themeColor,setThemeColor]=useState(lightColor);
-    const[theme,setTheme]=useState('light')
+    const[themeColor,setThemeColor]=useState(blackColor);
+    const[theme,setTheme]=useState('dark')
     function themeChanger(color){
         if(color==='light'){
             setThemeColor(lightColor)

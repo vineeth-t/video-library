@@ -1,14 +1,6 @@
 import { videoList } from "../dataBase"
 export function stateReducer(state,action){
     switch(action.type){
-        case 'HISTORY':
-            return {
-                ...state,history:[...state.history,action.payload]
-            }
-        case 'REMOVE_FROM_HISTORY':
-            return {
-                ...state,history:[...state.history.filter((video)=>video.id!==action.videoId)]
-            }
         case 'LIKED_VIDEO':
             if(state.likedVideo.some((video)=>video.id===action.videoId)){
                 return {
@@ -20,8 +12,15 @@ export function stateReducer(state,action){
             return {...state,likedVideo:[...state.likedVideo,videoList.find((video)=>video.id===action.videoId)],toast:'Video Liked'}
         case 'REMOVE_FROM_LIKED_VIDEOS':
                 return {...state,likedVideo:[...state.likedVideo.filter((video)=>video.id!==action.videoId)]}
-              //Instead of this we can use server calling to get likedVideos 
-           
+              //Instead of this we can use server calling to get likedVideos  
+        case 'HISTORY':
+            return {
+                ...state,history:[...state.history,action.payload]
+            }
+        case 'REMOVE_FROM_HISTORY':
+            return {
+                ...state,history:[...state.history.filter((video)=>video.id!==action.videoId)]
+            }          
         case 'HAMBUG':
             return {...state,hambug:action.payload}
         case 'REMOVE_TOAST':

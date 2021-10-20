@@ -1,5 +1,6 @@
+@import '../../style.css';
 .playlist-videos{
-    text-align: center;
+    position: relative;
     width:600px;
     margin:auto;
     display: flex;
@@ -7,8 +8,37 @@
     justify-content: center; 
     align-items: center;
 }
+.btn-primary{
+    position:absolute;
+    bottom:0.5rem;
+    left:14rem;
+    background-color: inherit;
+    border:none;
+}
+.toast-card{
+    display: none;
+}
+.btn-primary:hover + .toast-card{
+    position: absolute;
+    bottom:0.5rem;
+    left:16rem;
+    display: block;
+    border:1px solid var(--text-color);
+    background-color:black;
+    color:white;
+    padding:0 0.25rem ;
+}
 @media screen and (max-width:765px) {
     .playlist-videos{
         width: 350px;
+    }
+    .btn-primary{
+        bottom:0.5rem;
+        left:18rem
+        
+    }
+    .btn-primary:hover + .toast-card{
+        bottom:0rem;
+        left:19rem;
     }
 }
