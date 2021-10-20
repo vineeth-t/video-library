@@ -4,13 +4,23 @@
     box-sizing: border-box;
     margin:0;
 }
-
 :root{
-    --primary-bg-color:rgba(255, 255, 255, 0.575);
-   --secondary-color:rgb(240, 73, 73);
-   --secondary-bg-color:rgb(29, 27, 27);
+    --text-color:rgba(255, 255, 255, 0.575);
+     --secondary-color:rgb(240, 73, 73);
 }
+[data-theme="light"]{
+    --primary-bg-color:rgba(255, 255, 255, 0.575);
+} 
+[data-theme="dark"] {
+      --primary-bg-color:  black;
+      
+}
+  body{
+    background-color: var(--primary-bg-color);
+    }
 a{
     text-decoration: none;
     color:inherit;
+}
+@media screen and (max-width:765px) {
 }

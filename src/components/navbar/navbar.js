@@ -9,7 +9,7 @@ const{theme,themeColor,themeChanger}=useThemeContext();
 const{state:{login}}=useAuthContext()
     return (  
        <>
-         <nav  style={themeColor} className='navbar'>
+         <nav style={themeColor} className='navbar'>
            {toast&&<Toast/>}
                   <div className='nav-hambug' onClick={()=>hambug==='leftNav'?dispatch({type:'HAMBUG',payload:'notLeftNav'}):dispatch({type:'HAMBUG',payload:'leftNav'})}>
                       <svg className={theme==='light'?'svg-img-black':'svg-img'}  width="2em" height="2em" viewBox="0 0 24 24" >

@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 export const ThemeProvider=createContext();
 export const lightColor={
-backgroundColor:'white',
+backgroundColor:'rgba(255, 255, 255, 0.575)',
 color:'black'
 }
 export const blackColor={
@@ -15,9 +15,11 @@ export function ThemeContextProvider({children}){
         if(color==='light'){
             setThemeColor(lightColor)
             setTheme('light')
+            document.documentElement.setAttribute("data-theme", 'light')
         }else{
             setThemeColor(blackColor)
             setTheme('dark')
+            document.documentElement.setAttribute("data-theme", 'dark')
 
         }
     }

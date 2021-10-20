@@ -25,7 +25,7 @@
   padding: 0.5rem;
 }
 .nav-link{
-    color:var(--primary-bg-color);
+    color:var(--text-color);
     background-color: var(--secondary-color);
     padding:0.5rem;
     border-radius: 1em;
@@ -41,7 +41,7 @@
     
 }
 .svg-img{
-    fill:var(--primary-bg-color);
+    fill:var(--text-color);
 }
 .svg-img-black{
     fill:var(--secondary-bg-color);
