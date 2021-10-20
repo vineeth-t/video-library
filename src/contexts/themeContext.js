@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 export const ThemeProvider=createContext();
 export const lightColor={
-backgroundColor:'rgba(255, 255, 255, 0.575)',
+backgroundColor:'white',
 color:'black'
 }
 export const blackColor={

@@ -22,7 +22,6 @@ const{state:{login}}=useAuthContext()
                       </NavLink>
                   </div>
                <div className='navbar-right'>
-              
                       <div className='navbar-login' >
                       <Link to={login?'/profile':'/login'}>
                             <svg className={theme==='light'?'svg-img-black':'svg-img'} fill='currentcolor' width="2em" height="2em"  viewBox="0 0 24 24">

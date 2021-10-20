@@ -14,6 +14,9 @@ export function stateReducer(state,action){
                 return {...state,likedVideo:[...state.likedVideo.filter((video)=>video.id!==action.videoId)]}
               //Instead of this we can use server calling to get likedVideos  
         case 'HISTORY':
+            if(state.history.some((video)=>video.id===action.payload.videoId)){
+                console.log(true)
+            }
             return {
                 ...state,history:[...state.history,action.payload]
             }

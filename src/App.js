@@ -13,12 +13,12 @@ import { useThemeContext } from "./contexts/themeContext";
 import { VideoPlayer } from "./components/index";
 import { Login } from "./components/loginCard/login";
 import{SignUp} from './components/signUpCard/signUpCard'
+import { NavBottom } from "./components/navbar/navBottom/navBottom";
 function App() {
   const { themeColor } = useThemeContext();
   return (
     <div style={themeColor} className="App">
       <NavBar />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/videoPlayer/:videoId" element={<VideoPlayer />} />
@@ -30,6 +30,7 @@ function App() {
         <PrivateRoute path="/watchLater" element={<WatchLater />} />
         <PrivateRoute path='/history' element={<History/>}/>
       </Routes>
+      <NavBottom/>
     </div>
   );
 }

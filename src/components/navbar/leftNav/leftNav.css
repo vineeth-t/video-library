@@ -1,4 +1,4 @@
-@import '../../style.css';
+@import '../../../style.css';
 .leftNav{
     position: fixed;
     display: flex;
@@ -52,12 +52,7 @@
     display: none;
 }
 .notLeftNav{
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  padding-left: 0.7rem;
-  height:200vh;
-  width:10rem;
+  display: none;
  
 }
 }

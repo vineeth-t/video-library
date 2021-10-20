@@ -1,4 +1,4 @@
-export {LeftNav} from './leftNav/leftNav'
+export {LeftNav} from './navbar/leftNav/leftNav'
 export {NavBar} from './navbar/navbar'
 export {VideoCard} from './videoCard/videoCard'
 export {VideoPlayer} from './videoPlayer/videoPlayer'

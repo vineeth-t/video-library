@@ -1,0 +1,26 @@
+@import '../navBar.css';
+.navbar-bottom{
+    display: none;
+}
+@media screen and (max-width: 768px){
+    .navbar-bottom{
+        position: fixed;
+        z-index: 1;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display:flex;
+        justify-content: space-between;
+        font-weight:1000;
+        align-items: center;
+        padding:0.5rem;
+        cursor:pointer; 
+    }
+    .svg-image {
+
+      }
+      .navbar-bottom-link{
+          display: flex;
+          flex-direction: column;
+      }
+}
