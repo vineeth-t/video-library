@@ -37,8 +37,8 @@ export function stateReducer(state,action){
                 return {...state,toast:'Playlist Exists'}
             }
             return {...state,playlists:[...state.playlists,action.payload],toast:'Playlist Created'}
-            case 'DELETE_PLAYLIST':
-                return {...state,playlists:state.playlists.fiter((playlist)=>playlist.playlistId===action.payload),toast:'Playlist Deleted'}
+        case 'DELETE_PLAYLIST':
+                return {...state,playlists:state.playlists.filter((playlist)=>playlist.playlistId===action.payload),toast:'Playlist Deleted'}
         case 'ADD_TO_PLAYLIST':
             let playlistIndex=state.playlists.findIndex((playlist)=>playlist.playlistId===action.playlistId)
             state.playlists[playlistIndex]={...state.playlists[playlistIndex],

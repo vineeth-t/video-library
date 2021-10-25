@@ -3,8 +3,7 @@ import { VideoCard } from '../../components';
 import { useThemeContext ,useStateContext} from '../../contexts'
 import './library.css'
 export function Library(){
-    const{theme,themeColor}=useThemeContext();
-    const{dispatch}=useStateContext()
+    const{themeColor}=useThemeContext();
     const{state:{history,playlists}}= useStateContext()
     return<div style={themeColor} className='library-list'>
         <div></div>
