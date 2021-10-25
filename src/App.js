@@ -9,6 +9,7 @@ import {
   History
 } from "./Routes/index";
 import { NavBar } from "../src/components/index";
+import{ShowIndividualPlayList} from '../src/components/playlist/showIndividualPlayList'
 import { useThemeContext } from "./contexts/themeContext";
 import { VideoPlayer } from "./components/index";
 import { Login } from "./components/loginCard/login";
@@ -26,8 +27,9 @@ function App() {
         <Route path='/signUp' element={<SignUp/>}/>
         <PrivateRoute path='/profile' element={<Profile/>}/>
         <PrivateRoute path="/library" element={<Library />} />
+        <PrivateRoute path='/:libraryId' element={<ShowIndividualPlayList/>}/>
         <PrivateRoute path="/likedVideos" element={<LikedVideos/>} />
-        <PrivateRoute path="/watchLater" element={<WatchLater />} />
+        <PrivateRoute path="/WatchLater" element={<WatchLater />} />
         <PrivateRoute path='/history' element={<History/>}/>
       </Routes>
       <NavBottom/>

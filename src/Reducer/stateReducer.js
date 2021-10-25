@@ -26,12 +26,19 @@ export function stateReducer(state,action){
             }          
         case 'HAMBUG':
             return {...state,hambug:action.payload}
+        case "TOAST":
+            return{...state,toast:action.payload}
         case 'REMOVE_TOAST':
             return{...state,toast:''}
         default:
             return {...state}
         case 'CREATE_NEW_PLAYLIST':
+            if(state.playlists.some((playlist)=>playlist.playListName===action.payload.playListName)){
+                return {...state,toast:'Playlist Exists'}
+            }
             return {...state,playlists:[...state.playlists,action.payload],toast:'Playlist Created'}
+            case 'DELETE_PLAYLIST':
+                return {...state,playlists:state.playlists.fiter((playlist)=>playlist.playlistId===action.payload),toast:'Playlist Deleted'}
         case 'ADD_TO_PLAYLIST':
             let playlistIndex=state.playlists.findIndex((playlist)=>playlist.playlistId===action.playlistId)
             state.playlists[playlistIndex]={...state.playlists[playlistIndex],
@@ -39,10 +46,10 @@ export function stateReducer(state,action){
                                              action.videoPlayingNow]}
             return state;
         case 'REMOVE_FROM_PLAYLIST':
-           
+           console.log({action})
             let removePlaylistIndex=state.playlists.findIndex((playlist)=>playlist.playlistId===action.playlistId)
             state.playlists[removePlaylistIndex]={...state.playlists[removePlaylistIndex],
-                                             listOfVideos:[...state.playlists[removePlaylistIndex].listOfVideos.filter((video)=>video.id!==action.videoId)]}
-          return {...state,playlists:[...state.playlists,state.playlists[removePlaylistIndex]]}
+                listOfVideos:[...state.playlists[removePlaylistIndex].listOfVideos.filter((video)=>video.id!==action.videoId)]}
+            return {...state,playlists:[...state.playlists,state.playlists[removePlaylistIndex]]}
     }
 }

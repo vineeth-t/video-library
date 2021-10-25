@@ -1,7 +1,33 @@
+@import '../../style.css';
 .library-list{
-    display: flex;
-    flex-direction: column;
-    width:100%;
+    display: grid;
+    grid-template-columns: 0.5fr 3.5fr;
+    margin-top:1rem;
     font-weight: 900;
-  
+}
+.library-list-videos{
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction: row;
+}
+.library-list-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 2rem 1rem 0;
+}
+.library-list-heading{
+    display: flex;
+      align-items: center;
+}
+.svg-image{
+    margin-right: 0.5em;
+}
+@media screen and (max-width:765px) {
+    .library-list{
+        display: flex;
+        margin-left: 1rem;
+    }
+    
 }

@@ -1,6 +1,5 @@
 import { useStateContext } from "../../contexts";
-
-export function Playlists({videoPlayingNow}) {
+export function PlaylistModal({videoPlayingNow}) {
     const {state:{playlists},dispatch}=useStateContext();
   return  playlists.map(({playListName,playlistId})=>(
        <label style={{color:'black'}} >    

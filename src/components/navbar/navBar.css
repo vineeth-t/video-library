@@ -52,11 +52,8 @@
     background-color: white;
 }
 @media screen and (max-width: 768px){
-    .svg-img{
+    .hambug-icon{
         display: none;
-    }
-    .svg-img-black{
-       display:none;
     }
     .nav-icon{
             margin-left:0;

@@ -12,10 +12,12 @@ const{state:{login}}=useAuthContext()
          <nav style={themeColor} className='navbar'>
            {toast&&<Toast/>}
                   <div className='nav-hambug' onClick={()=>hambug==='leftNav'?dispatch({type:'HAMBUG',payload:'notLeftNav'}):dispatch({type:'HAMBUG',payload:'leftNav'})}>
+                     <div className='hambug-icon'>
                       <svg className={theme==='light'?'svg-img-black':'svg-img'}  width="2em" height="2em" viewBox="0 0 24 24" >
                         <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" >
                         </path>
                       </svg>
+                     </div>
                       <NavLink to='/' className='nav-icon'>
                             <span className='nav-link'>FT</span>
                             <h2>FinTube</h2>

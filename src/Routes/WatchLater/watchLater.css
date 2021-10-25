@@ -1,0 +1,14 @@
+.watch-later{
+    text-align: center;
+    width:600px;
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+}
+@media screen and(max-width:765px) {
+    .watch-later{
+        width: 350px;
+    }
+}
