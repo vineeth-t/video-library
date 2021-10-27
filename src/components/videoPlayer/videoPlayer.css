@@ -15,9 +15,8 @@ font-size:larger
     margin-top:1rem;
 }
 .media-iframe{
-    margin-top:1rem;
-    width:800px;
-    height:450px
+    width:700px;
+    height:400px
 }
 
 .profile-info{
@@ -45,6 +44,9 @@ padding:0 1rem 0 0rem;
 }
 .media-views{
     display:flex;
+}
+.media-list{
+    margin-left: 3rem;
 }
 @media screen and (max-width: 768px) {
     .media-player{
