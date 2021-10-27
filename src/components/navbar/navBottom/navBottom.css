@@ -5,9 +5,8 @@
 @media screen and (max-width: 768px){
     .navbar-bottom{
         position: fixed;
-        z-index: 1;
-        bottom: 0;
-        left: 0;
+        scroll-behavior: smooth;
+        bottom:0;
         width: 100%;
         display:flex;
         justify-content: space-between;
@@ -16,9 +15,6 @@
         padding:0.5rem;
         cursor:pointer; 
     }
-    .svg-image {
-
-      }
       .navbar-bottom-link{
           display: flex;
           flex-direction: column;

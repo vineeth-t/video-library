@@ -28,6 +28,12 @@
     .library-list{
         display: flex;
         margin-left: 1rem;
+       
+        
+    }
+    .library-list-videos{
+     align-items: center;
+        justify-content: center;
     }
     
 }
