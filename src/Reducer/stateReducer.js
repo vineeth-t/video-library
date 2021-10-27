@@ -38,19 +38,19 @@ export function stateReducer(state,action){
             }
             return {...state,playlists:[...state.playlists,action.payload],toast:'Playlist Created'}
         case 'DELETE_PLAYLIST':
-            console.log(action.payload)
                 return {...state,playlists:state.playlists.filter((playlist)=>playlist.playlistId!==action.payload),toast:'Playlist Deleted'}
         case 'ADD_TO_PLAYLIST':
             let playlistIndex=state.playlists.findIndex((playlist)=>playlist.playlistId===action.playlistId)
+        
             state.playlists[playlistIndex]={...state.playlists[playlistIndex],
-                                            listOfVideos:[...state.playlists[playlistIndex].listOfVideos,
-                                             action.videoPlayingNow]}
-            return state;
+                listOfVideos:[...state.playlists[playlistIndex].listOfVideos,
+                 action.videoPlayingNow]}
+                                  
+            return {...state,toast: 'Added to Playlist'};
         case 'REMOVE_FROM_PLAYLIST':
-           console.log({action})
             let removePlaylistIndex=state.playlists.findIndex((playlist)=>playlist.playlistId===action.playlistId)
             state.playlists[removePlaylistIndex]={...state.playlists[removePlaylistIndex],
                 listOfVideos:[...state.playlists[removePlaylistIndex].listOfVideos.filter((video)=>video.id!==action.videoId)]}
-            return {...state,playlists:[...state.playlists,state.playlists[removePlaylistIndex]]}
+            return {...state,playlists:[...state.playlists],toast: 'Removed from Playlist'}
     }
 }

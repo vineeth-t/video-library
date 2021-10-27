@@ -8,6 +8,7 @@ const[state,dispatch]=useReducer(stateReducer, {
                                               hambug:'leftNav',
                                               toast:'',
                                               history:[],
+                                              checkBox:false,
                                               playlists:[{
                                                 playListName:'WatchLater',
                                                 playListId:1,
