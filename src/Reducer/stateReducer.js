@@ -14,8 +14,8 @@ export function stateReducer(state,action){
                 return {...state,likedVideo:[...state.likedVideo.filter((video)=>video.id!==action.videoId)]}
               //Instead of this we can use server calling to get likedVideos  
         case 'HISTORY':
-            if(state.history.some((video)=>video.id===action.payload.videoId)){
-                console.log(true)
+            if(state.history.some((video)=>video.id===action.payload.id)){
+              return {...state}
             }
             return {
                 ...state,history:[...state.history,action.payload]
@@ -41,7 +41,6 @@ export function stateReducer(state,action){
                 return {...state,playlists:state.playlists.filter((playlist)=>playlist.playlistId!==action.payload),toast:'Playlist Deleted'}
         case 'ADD_TO_PLAYLIST':
             let playlistIndex=state.playlists.findIndex((playlist)=>playlist.playlistId===action.playlistId)
-        
             state.playlists[playlistIndex]={...state.playlists[playlistIndex],
                 listOfVideos:[...state.playlists[playlistIndex].listOfVideos,
                  action.videoPlayingNow]}

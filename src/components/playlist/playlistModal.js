@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useParams } from "react-router";
 import { useStateContext } from "../../contexts";
 export function PlaylistModal({videoPlayingNow}) {
