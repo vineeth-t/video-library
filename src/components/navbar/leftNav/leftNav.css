@@ -47,12 +47,3 @@
   .notLeftNav{
     display: none;
 }
-@media screen and (max-width: 768px) {
-  .leftNav{
-    display: none;
-}
-.notLeftNav{
-  display: none;
- 
-}
-}

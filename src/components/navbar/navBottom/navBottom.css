@@ -5,7 +5,6 @@
 @media screen and (max-width: 768px){
     .navbar-bottom{
         position: fixed;
-        scroll-behavior: smooth;
         bottom:0;
         width: 100%;
         display:flex;
