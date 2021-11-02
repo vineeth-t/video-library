@@ -8,12 +8,17 @@
     --primary-bg-color:  black;
     --text-color:rgba(255, 255, 255, 0.575);
      --secondary-color:rgb(240, 73, 73);
+     --border-color:rgba(255, 255, 255, 0.575);
+     --primary-btn-color:red;
 }
 [data-theme="light"]{
     --primary-bg-color:rgba(255, 255, 255, 0.575);
+    --border-color:black;
 } 
 [data-theme="dark"] {
       --primary-bg-color:  black;
+      --border-color:rgba(255, 255, 255, 0.575);
+ 
       
 }
   body{

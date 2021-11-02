@@ -1,9 +1,10 @@
 import { videoList } from "../../dataBase";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { VideoCard,CreateNewPlaylist } from "../index";
+import { CreateNewPlaylist } from "../index";
 import './videoPlayer.css'
 import { useStateContext } from "../../contexts";
+import { Notes } from "../notescard/note";
 export function getVideoFromDataBase(videoList,videoId){
   return videoList.find((video)=>video.id===videoId)
 }
@@ -11,7 +12,8 @@ export function VideoPlayer() {
   const{state:{likedVideo},dispatch}=useStateContext();
    let{videoId}=useParams();
    const videoPlayingNow=getVideoFromDataBase(videoList,videoId)
-  const[playlistContainer,setPlaylistContainer]=useState(false)
+  const[playlistContainer,setPlaylistContainer]=useState(false);
+  const[openNotes,setOpenNotes]=useState('notes-block');
   return(
   <div className='media-player-body'>
         {playlistContainer&&<CreateNewPlaylist setPlaylistContainer={setPlaylistContainer} videoPlayingNow={videoPlayingNow}/>}
@@ -42,6 +44,11 @@ export function VideoPlayer() {
                         <svg width="1.4em" height="1.5em" viewBox="0 0 24 24"><path d="M6 4h10.586L20 7.414V18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3zm0 1a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7.914L16.086 5H15v5H6V5zm1 0v4h7V5H7zm5 7a3 3 0 1 1 0 6a3 3 0 0 1 0-6zm0 1a2 2 0 1 0 0 4a2 2 0 0 0 0-4z" fill="currentColor"></path></svg>
                         <label>Save</label>
                     </div>
+                    <button className='media-notes' onClick={()=>{
+                      openNotes==='notes-block'?setOpenNotes(''):setOpenNotes('notes-block')}}>
+                    <svg width="1.5em" height="1.5em" viewBox="0 0 24 24"><path d="M22 7.24a1 1 0 0 0-.29-.71l-4.24-4.24a1 1 0 0 0-.71-.29a1 1 0 0 0-.71.29l-2.83 2.83L2.29 16.05a1 1 0 0 0-.29.71V21a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .76-.29l10.87-10.93L21.71 8a1.19 1.19 0 0 0 .22-.33a1 1 0 0 0 0-.24a.7.7 0 0 0 0-.14zM6.83 20H4v-2.83l9.93-9.93l2.83 2.83zM18.17 8.66l-2.83-2.83l1.42-1.41l2.82 2.82z" fill="currentColor"></path></svg>
+                    </button>
+                    <span className='notes-def'>Take Notes</span>
                 </div>
                <div className='profile-info'>
                   <img className='profile-icon' src={`${videoPlayingNow.img}`} alt='profile-icon'/>
@@ -50,12 +57,16 @@ export function VideoPlayer() {
                   <p>11k subscribers</p>
                   </div>
                </div>
+         
          </div>
-          <div className='media-list'>
+         <div className={`${openNotes}`} >
+            <Notes/>
+          </div>
+          {/* <div className='media-list'>
             {videoList.map((scrollVideoCard)=>
             scrollVideoCard.id!==videoPlayingNow.id&&<VideoCard video={scrollVideoCard} />
             )}
-          </div>
+          </div> */}
     </div>)
   };
   

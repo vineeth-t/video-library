@@ -19,7 +19,6 @@ export function PlaylistModal({videoPlayingNow}) {
        <label style={{color:'black'}}>    
             <input type='checkbox' checked={findingVideoInPlaylist(playlistId,videoId)} onChange={()=>{
               checkBoxChecker(playlistId,videoId)
-              
             }}
               />
             <span>{playListName}</span>
