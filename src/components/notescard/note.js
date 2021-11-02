@@ -29,7 +29,7 @@ export function Notes(){
             {notes?.length!==0&&notes?.listOfNotes.map(({noteId,notesTaken})=>{
                 return <div className='notes-child'>{notesTaken}
                         <button className='btn-remove' onClick={()=>
-                         dispatch({type:'DELETE_NOTE',noteId:noteId})}
+                         dispatch({type:'DELETE_NOTE',noteId:noteId,videoId:videoId})}
                     >
                              x
                         </button>

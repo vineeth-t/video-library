@@ -56,16 +56,20 @@ export function stateReducer(state,action){
         case 'SET_NEW_NOTES':
             return{...state,notesHolder:[...state.notesHolder,{videoId:action.videoId,listOfNotes:[action.listOfNotes]}],note:''}
         case 'ADD_TO_NOTES':
-        const noteIndex=state.notesHolder.findIndex((notes)=>notes.videoId===action.videoId)
-        console.log(noteIndex)
-        state.notesHolder[noteIndex]={...state.notesHolder[noteIndex],
-                    listOfNotes:[...state.notesHolder[noteIndex].listOfNotes,
-                     action.InputNote]}
-        return {...state,toast:'Note Added',note:''};
+            const tempNotes=[...state.notesHolder]
+            const noteIndex=tempNotes.findIndex((notes)=>notes.videoId===action.videoId)
+            tempNotes[noteIndex]={...tempNotes[noteIndex],
+            listOfNotes:[...tempNotes[noteIndex].listOfNotes,
+             action.InputNote]}
+        //this is important you should return notesholder along with state to avoid duplicates
+        return {...state,notesHolder:tempNotes,toast:'Note Added',note:''};
         case 'DELETE_NOTE':
-            const noteIndexToBeDelted=state.notesHolder.findIndex((notes)=>notes.videoId===action.videoId)
-            state.notesHolder[noteIndexToBeDelted]={...state.notesHolder[noteIndexToBeDelted],
-                listOfNotes:[...state.notesHolder[noteIndexToBeDelted].listOfNotes?.filter((notes)=>notes.videoId!==action.videoId)]}
-        return {...state,toast:'Note Deleted',note:''};  
+            const removingNotes=[...state.notesHolder]
+            const removingNoteIndex=removingNotes.findIndex((notes)=>notes.videoId===action.videoId)
+            removingNotes[removingNoteIndex]={...removingNotes[removingNoteIndex],
+                listOfNotes: [...removingNotes[removingNoteIndex].listOfNotes.filter((notes)=>notes.noteId!==action.noteId)]
+            }
+            return {...state,notesHolder:removingNotes,toast:'Notes Deleted'}
+            
     }
 }

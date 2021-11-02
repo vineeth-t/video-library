@@ -5,7 +5,7 @@ export function StateContextProvider({children}){
 const[state,dispatch]=useReducer(stateReducer, {
                                               videoPlayingNow:{},
                                               likedVideo:[],
-                                              hambug:'notLeftNav',
+                                              hambug:'leftNav',
                                               toast:'',
                                               history:[],
                                               checkBox:false,
