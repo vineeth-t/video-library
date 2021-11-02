@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { CreateNewPlaylist } from "../index";
 import './videoPlayer.css'
 import { useStateContext } from "../../contexts";
-import { Notes, notesHandler } from "../notescard/note";
+import { Notes } from "../notescard/note";
 export function getVideoFromDataBase(videoList,videoId){
   return videoList.find((video)=>video.id===videoId)
 }
