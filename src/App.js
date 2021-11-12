@@ -15,8 +15,24 @@ import { VideoPlayer } from "./components/index";
 import { Login } from "./components/loginCard/login";
 import{SignUp} from './components/signUpCard/signUpCard'
 import { NavBottom } from "./components/navbar/navBottom/navBottom";
+import { useEffect } from "react";
+import axios from "axios";
+import { useStateContext } from "./contexts";
 function App() {
   const { themeColor } = useThemeContext();
+  const{dispatch}=useStateContext()
+  useEffect(()=>{
+    (async function(){
+              try{
+                const {data:{response}}=await axios.get('https://video-library-server.vineetht.repl.co')
+                console.log(response)
+                dispatch({type:'SET_VIDEOS',payload:response.videoList})
+              }catch(error){
+                console.log(error);
+                dispatch({type:'TOAST',payload:'Refresh the Page'})
+              }
+        })()
+  },[])
   return (
     <div style={themeColor} className="App">
       <NavBar />

@@ -3,6 +3,7 @@ import { stateReducer } from "../Reducer/stateReducer";
 export const StateContext=createContext()
 export function StateContextProvider({children}){
 const[state,dispatch]=useReducer(stateReducer, {
+                                              videoList:[],
                                               videoPlayingNow:{},
                                               likedVideo:[],
                                               hambug:'leftNav',

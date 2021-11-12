@@ -1,6 +1,8 @@
 import { videoList } from "../dataBase"
 export function stateReducer(state,action){
     switch(action.type){
+        case 'SET_VIDEOS':
+            return{...state,videoList:action.payload}
         case 'LIKED_VIDEO':
             if(state.likedVideo.some((video)=>video.id===action.videoId)){
                 return {
