@@ -1,20 +1,28 @@
-import { videoList } from "../../dataBase";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CreateNewPlaylist } from "../index";
 import './videoPlayer.css'
 import { useStateContext } from "../../contexts";
 import { Notes } from "../notescard/note";
-export function getVideoFromDataBase(videoList,videoId){
-  return videoList.find((video)=>video.id===videoId)
-}
+import axios from "axios";
 export function VideoPlayer() {
   const{state:{likedVideo},dispatch}=useStateContext();
-   let{videoId}=useParams();
-   const videoPlayingNow=getVideoFromDataBase(videoList,videoId)
+  const[videoPlayingNow,setVideoPlayingNow]=useState(null)
+  let{videoId}=useParams();
+  useEffect(()=>{
+    (async()=>{
+        const {data:{response}}= await axios({
+                                                method: 'GET',
+                                                url: `https://video-library-server.vineetht.repl.co/videos/${videoId}`,
+                                              });
+        setVideoPlayingNow(response)
+    })()
+  },[videoId])
   const[playlistContainer,setPlaylistContainer]=useState(false);
   return(
-  <div className='media-player-body'>
+    <>
+    {videoPlayingNow !==null &&(
+      <div className='media-player-body'>
         {playlistContainer&&<CreateNewPlaylist setPlaylistContainer={setPlaylistContainer} videoPlayingNow={videoPlayingNow}/>}
        <div className="media-player">
               <iframe className='media-iframe'
@@ -61,6 +69,10 @@ export function VideoPlayer() {
             scrollVideoCard.id!==videoPlayingNow.id&&<VideoCard video={scrollVideoCard} />
             )}
           </div> */}
-    </div>)
+    </div>
+    )}
+  
+    </>
+    )
   };
   

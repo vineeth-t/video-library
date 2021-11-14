@@ -24,15 +24,25 @@ function App() {
   useEffect(()=>{
     (async function(){
               try{
-                const {data:{response}}=await axios.get('https://video-library-server.vineetht.repl.co')
-                console.log(response)
-                dispatch({type:'SET_VIDEOS',payload:response.videoList})
+                const {data:{response}}=await axios.get('https://video-library-server.vineetht.repl.co/videos')
+                dispatch({type:'SET_VIDEOS',payload:response})
               }catch(error){
                 console.log(error);
                 dispatch({type:'TOAST',payload:'Refresh the Page'})
               }
         })()
-  },[])
+  },[dispatch])
+  useEffect(()=>{
+    (async function(){
+              try{
+                const {data:{response}}=await axios.get('https://video-library-server.vineetht.repl.co/history')
+                dispatch({type:'SET_HISTORY',payload:response})
+              }catch(error){
+                console.log(error);
+                dispatch({type:'TOAST',payload:'Refresh the Page'})
+              }
+        })()
+  },[dispatch])
   return (
     <div style={themeColor} className="App">
       <NavBar />

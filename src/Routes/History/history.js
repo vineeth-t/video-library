@@ -14,6 +14,7 @@ const{dispatch}=useStateContext()
                     <h3>History</h3>
             </div>
           {history.map((video)=>{
+              console.log(video)
           const{id}=video
                     return (
                             <div className='playlist-videos'>

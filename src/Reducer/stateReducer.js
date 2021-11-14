@@ -1,4 +1,3 @@
-import { videoList } from "../dataBase"
 export function stateReducer(state,action){
     switch(action.type){
         case 'SET_VIDEOS':
@@ -11,15 +10,19 @@ export function stateReducer(state,action){
                 }
             }
              //Instead of this we can use server calling to get likedVideos 
-            return {...state,likedVideo:[...state.likedVideo,videoList.find((video)=>video.id===action.videoId)],toast:'Video Liked'}
+            return {...state,likedVideo:[...state.likedVideo,state.videoList.find((video)=>video.id===action.videoId)],toast:'Video Liked'}
         case 'REMOVE_FROM_LIKED_VIDEOS':
                 return {...state,likedVideo:[...state.likedVideo.filter((video)=>video.id!==action.videoId)]}
               //Instead of this we can use server calling to get likedVideos  
-        case 'HISTORY':
-            if(state.history.some((video)=>video.id===action.payload.id)){
-              return {...state}
-            }
+        case 'SET_HISTORY':
             return {
+                ...state,history:action.payload
+            }
+        case 'ADD_TO_HISTORY':
+            if(state.history.some((video)=>video.id===action.payload.id)){
+                return {...state}
+              }
+        return {
                 ...state,history:[...state.history,action.payload]
             }
         case 'REMOVE_FROM_HISTORY':
