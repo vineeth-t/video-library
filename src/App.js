@@ -20,7 +20,8 @@ import axios from "axios";
 import { useStateContext } from "./contexts";
 function App() {
   const { themeColor } = useThemeContext();
-  const{dispatch}=useStateContext()
+  const{dispatch}=useStateContext();
+
   useEffect(()=>{
     (async function(){
               try{

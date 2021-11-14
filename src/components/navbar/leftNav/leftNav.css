@@ -6,10 +6,10 @@
     padding-left: 0.7rem;
     height:200vh;
     width:10rem;
+    z-index:1;
 }
 .leftNav-menuList {
-  position: sticky;
-  margin-left:0;
+     margin-left:0;
     list-style: none;
     width: fit-content;
     /* width-fitcontent is important */

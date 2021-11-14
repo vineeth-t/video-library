@@ -1,19 +1,20 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import {loginReducer} from '../Reducer/loginReducer'
 import { AuthApi } from "../api/AuthApi";
 const AuthContext = createContext();
-
 export function AuthProvider({ children }) {
+
+  useEffect(()=>{
+    const loginStatus=JSON.parse(localStorage.getItem('login'))
+    if(loginStatus?.isUserLoggedIn){
+      dispatch({type:'LOGIN',payload:loginStatus.userName})
+   }   
+  },[])
   const[state,dispatch]=useReducer(loginReducer, {
                                                     login,
                                                     userName,
                                                     password:''
-                                                  })  
- const loginStatus=JSON.parse(localStorage.getItem('login'))
-  if(loginStatus?.isUserLoggedIn){
-          login=true
-          userName=loginStatus.userName;
- }     
+                                                  })    
 async function loginInWithCredentials(state,userName,password,navigate){
                try{
                 const response= await AuthApi(userName,password);
@@ -23,8 +24,8 @@ async function loginInWithCredentials(state,userName,password,navigate){
                           navigate(state?.from?state.from:'/profile')
                             }
                   }catch(error){
-                          alert('In valid Credentials')
-                           navigate('/login')
+                       alert('In valid Credentials')
+                       navigate('/login')
      }
   }
    return (

@@ -7,6 +7,7 @@ import {
   ThemeContextProvider,
   StateContextProvider
 } from "./contexts/index";
+
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
