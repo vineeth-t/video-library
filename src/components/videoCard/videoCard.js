@@ -2,16 +2,15 @@ import {useStateContext} from '../../contexts/index'
 import { NavLink } from 'react-router-dom';
 import { useThemeContext } from '../../contexts/themeContext';
 import axios from 'axios';
-
 export function VideoCard({video}){
     const{dispatch}=useStateContext()
     const {id,name,views,UploadedDate,channelName,img}=video;
     const{themeColor}=useThemeContext()
     const historyHandler=async(dispatch,video)=>{
         try{
-            const response= await axios.post(`https://video-library-server.vineetht.repl.co/history/${video.id}`,video)
-            if(response.status===201){
-                dispatch({type:'ADD_TO_HISTORY',payload:video})
+            const {data:{response},status}= await axios.post(`https://video-library-server.vineetht.repl.co/history/${video.id}`,video)
+            if(status===201){
+                dispatch({type:'SET_HISTORY',payload:response})
             }
         }catch(error){
             console.log(error)

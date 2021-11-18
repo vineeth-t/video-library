@@ -18,25 +18,17 @@ export function stateReducer(state,action){
             return {
                 ...state,history:action.payload
             }
-        case 'ADD_TO_HISTORY':
-            if(state.history.some((video)=>video.id===action.payload.id)){
-                return {...state}
-              }
-        return {
-                ...state,history:[...state.history,action.payload]
-            }
-        case 'REMOVE_FROM_HISTORY':
-            return {
-                ...state,history:[...state.history.filter((video)=>video.id!==action.videoId)]
-            }          
+           
         case 'HAMBUG':
             return {...state,hambug:action.payload}
-        case "TOAST":
+        case " ":
             return{...state,toast:action.payload}
         case 'REMOVE_TOAST':
             return{...state,toast:''}
         default:
             return {...state}
+        case 'SET_PLAYLISTS':
+            return {...state,playlists:action.payload}
         case 'CREATE_NEW_PLAYLIST':
             if(state.playlists.some((playlist)=>playlist.playListName===action.payload.playListName)){
                 return {...state,toast:'Playlist Exists'}
@@ -44,14 +36,14 @@ export function stateReducer(state,action){
             return {...state,playlists:[...state.playlists,action.payload],toast:'Playlist Created'}
         case 'DELETE_PLAYLIST':
                 return {...state,playlists:state.playlists.filter((playlist)=>playlist.playlistId!==action.payload),toast:'Playlist Deleted'}
-        case 'ADD_TO_PLAYLIST':
+        case 'ADD_VIDEO_TO_PLAYLIST':
             let playlistIndex=state.playlists.findIndex((playlist)=>playlist.playlistId===action.playlistId)
             state.playlists[playlistIndex]={...state.playlists[playlistIndex],
                 listOfVideos:[...state.playlists[playlistIndex].listOfVideos,
                  action.videoPlayingNow]}
                                   
             return {...state,toast: 'Added to Playlist'};
-        case 'REMOVE_FROM_PLAYLIST':
+        case 'REMOVE_VIDEO_FROM_PLAYLIST':
             let removePlaylistIndex=state.playlists.findIndex((playlist)=>playlist.playlistId===action.playlistId)
             state.playlists[removePlaylistIndex]={...state.playlists[removePlaylistIndex],
                 listOfVideos:[...state.playlists[removePlaylistIndex].listOfVideos.filter((video)=>video.id!==action.videoId)]}

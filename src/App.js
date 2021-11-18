@@ -21,12 +21,22 @@ import { useStateContext } from "./contexts";
 function App() {
   const { themeColor } = useThemeContext();
   const{dispatch}=useStateContext();
-
   useEffect(()=>{
     (async function(){
               try{
                 const {data:{response}}=await axios.get('https://video-library-server.vineetht.repl.co/videos')
                 dispatch({type:'SET_VIDEOS',payload:response})
+              }catch(error){
+                console.log(error);
+                dispatch({type:'TOAST',payload:'Refresh the Page'})
+              }
+        })()
+  },[dispatch])
+  useEffect(()=>{
+    (async function(){
+              try{
+                const {data:{response}}=await axios.get('https://video-library-server.vineetht.repl.co/playlists')
+                dispatch({type:'SET_PLAYLISTS',payload:response})
               }catch(error){
                 console.log(error);
                 dispatch({type:'TOAST',payload:'Refresh the Page'})
