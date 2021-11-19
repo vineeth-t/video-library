@@ -21,19 +21,12 @@ export function stateReducer(state,action){
            
         case 'HAMBUG':
             return {...state,hambug:action.payload}
-        case " ":
+        case "TOAST":
             return{...state,toast:action.payload}
         case 'REMOVE_TOAST':
             return{...state,toast:''}
-        default:
-            return {...state}
         case 'SET_PLAYLISTS':
             return {...state,playlists:action.payload}
-        case 'CREATE_NEW_PLAYLIST':
-            if(state.playlists.some((playlist)=>playlist.playListName===action.payload.playListName)){
-                return {...state,toast:'Playlist Exists'}
-            }
-            return {...state,playlists:[...state.playlists,action.payload],toast:'Playlist Created'}
         case 'DELETE_PLAYLIST':
                 return {...state,playlists:state.playlists.filter((playlist)=>playlist.playlistId!==action.payload),toast:'Playlist Deleted'}
         case 'ADD_VIDEO_TO_PLAYLIST':
@@ -67,6 +60,8 @@ export function stateReducer(state,action){
                 listOfNotes: [...removingNotes[removingNoteIndex].listOfNotes.filter((notes)=>notes.noteId!==action.noteId)]
             }
             return {...state,notesHolder:removingNotes,toast:'Notes Deleted'}
+        default:
+                return {...state}
             
     }
 }

@@ -1,4 +1,5 @@
 
+import axios from "axios";
 import { useState } from "react";
 import { useStateContext } from "../../contexts";
 import './playlist.css'
@@ -7,14 +8,25 @@ export function CreateNewPlaylist({videoPlayingNow,setPlaylistContainer}){
     const {dispatch}=useStateContext();
     const[createNewPlaylist,setNewPlaylist]=useState(false);
     const[newPlayListName,setNewPlayListName]=useState()
-    function playlistCreator(dispatch,videoPlayingNow,newPlayListName,setNewPlayListName){
+    async function playlistCreator(dispatch,videoPlayingNow,newPlayListName,setNewPlayListName){
         if(newPlayListName===''||newPlayListName===undefined ){
             alert('Enter a name')
         }else{
-            dispatch({type:'CREATE_NEW_PLAYLIST',payload:{playListName:newPlayListName,playlistId:newPlayListName,listOfVideos:[videoPlayingNow]}})
+            const {data:{response,msg},status}=await axios.post(`https://video-library-server.vineetht.repl.co/playlists/`,
+            {
+                playListId:newPlayListName,
+                listOfVideos:[videoPlayingNow],
+                playListName:newPlayListName
+            })
+           if(status===201){
+            dispatch({type:'SET_PLAYLISTS',payload:response})
+            dispatch({type:'TOAST',payload:msg})
             setPlaylistContainer(false)
             setNewPlayListName('')
-            // dispatch({type:'TOAST',payload:'Video Added' })
+           }else{
+               dispatch({type:'TOAST',payload:'Refresh the page'})
+           }
+           
         }
        
     }  

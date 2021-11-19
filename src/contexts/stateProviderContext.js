@@ -10,11 +10,7 @@ const[state,dispatch]=useReducer(stateReducer, {
                                               toast:'',
                                               history:[],
                                               checkBox:false,
-                                              playlists:[{
-                                                playListName:'WatchLater',
-                                                playListId:1,
-                                                listOfVideos:[]
-                                                }],
+                                              playlists:[],
                                              note:'',
                                              notesHolder:[]
                                           }
