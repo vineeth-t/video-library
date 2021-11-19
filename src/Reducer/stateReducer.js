@@ -29,18 +29,8 @@ export function stateReducer(state,action){
             return {...state,playlists:action.payload}
         case 'DELETE_PLAYLIST':
                 return {...state,playlists:state.playlists.filter((playlist)=>playlist.playlistId!==action.payload),toast:'Playlist Deleted'}
-        case 'ADD_VIDEO_TO_PLAYLIST':
-            let playlistIndex=state.playlists.findIndex((playlist)=>playlist.playlistId===action.playlistId)
-            state.playlists[playlistIndex]={...state.playlists[playlistIndex],
-                listOfVideos:[...state.playlists[playlistIndex].listOfVideos,
-                 action.videoPlayingNow]}
-                                  
-            return {...state,toast: 'Added to Playlist'};
-        case 'REMOVE_VIDEO_FROM_PLAYLIST':
-            let removePlaylistIndex=state.playlists.findIndex((playlist)=>playlist.playlistId===action.playlistId)
-            state.playlists[removePlaylistIndex]={...state.playlists[removePlaylistIndex],
-                listOfVideos:[...state.playlists[removePlaylistIndex].listOfVideos.filter((video)=>video.id!==action.videoId)]}
-            return {...state,playlists:[...state.playlists],toast: 'Removed from Playlist'}
+       
+      
         case 'SET_NOTE_CONTENT':
             return {...state,note:action.payload}
         case 'SET_NEW_NOTES':
