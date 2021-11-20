@@ -10,8 +10,8 @@ export function WatchLater(){
         const watchLater=playlists.find((playlist)=>playlist.playListName==='WatchLater')
         return(
             <div className='playlist-videos'>
-                  {watchLater.listOfVideos.length===0&&<h3>Add here to watch later </h3>}
-                  {watchLater.listOfVideos.map((video)=>{
+                  {watchLater?.listOfVideos.length===0&&<h3>Add here to watch later </h3>}
+                  {watchLater?.listOfVideos.map((video)=>{
           const{id}=video
                     return (
                             <div className='playlist-videos'>

@@ -4,7 +4,7 @@ import { useThemeContext ,useStateContext} from '../../contexts'
 import './library.css'
 export function Library(){
     const{themeColor}=useThemeContext();
-    const{state:{history,playlists}}= useStateContext()
+    const{state:{history,playlists}}= useStateContext();
     return<div style={themeColor} className='library-list'>
         <div></div>
         <div >
@@ -25,13 +25,13 @@ export function Library(){
             </div>
         <div>
             {
-                playlists.map(({ playListName,listOfVideos})=>{
+                playlists.map(({ playListId,playListName,listOfVideos})=>{
                     return(<>
                             <div className='library-list-header' >
                                     <span className='library-list-heading'>
                                         <h3>{playListName}</h3>
                                     </span>
-                                    <Link to={`/${playListName}`}>More</Link>                           
+                                    <Link to={`/${playListId}`}>More</Link>                           
                             </div>
                             <div className='library-list-videos'>
                                     { listOfVideos.map((video)=>{

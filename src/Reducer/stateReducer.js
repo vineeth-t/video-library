@@ -26,11 +26,7 @@ export function stateReducer(state,action){
         case 'REMOVE_TOAST':
             return{...state,toast:''}
         case 'SET_PLAYLISTS':
-            return {...state,playlists:action.payload}
-        case 'DELETE_PLAYLIST':
-                return {...state,playlists:state.playlists.filter((playlist)=>playlist.playlistId!==action.payload),toast:'Playlist Deleted'}
-       
-      
+            return {...state,playlists:action.payload}  
         case 'SET_NOTE_CONTENT':
             return {...state,note:action.payload}
         case 'SET_NEW_NOTES':
