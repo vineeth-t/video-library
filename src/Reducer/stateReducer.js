@@ -26,7 +26,7 @@ export function stateReducer(state,action){
         case 'REMOVE_TOAST':
             return{...state,toast:''}
         case 'SET_PLAYLISTS':
-            return {...state,playlists:action.payload}  
+            return {...state,playlists:action.payload,toast:action.msg}  
         case 'SET_NOTE_CONTENT':
             return {...state,note:action.payload}
         case 'SET_NEW_NOTES':

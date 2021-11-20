@@ -5,6 +5,7 @@ export function PlaylistModal({videoPlayingNow}) {
     const{videoId}=useParams()
     
     const {state:{playlists},dispatch}=useStateContext();
+    console.log(playlists)
   return  playlists.map(({playListName,playListId})=>(
        <label style={{color:'black'}}>    
             <input type='checkbox' checked={checkBoxChanger(playlists,playListId,videoId)}

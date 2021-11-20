@@ -67,6 +67,27 @@ input[type='text']{
     color:white;
     padding:0 0.5rem ;
 }
+.playlist-header{
+    display: flex;
+    justify-content: center;
+}
+.playlist-delete-btn{
+    background-color: inherit;
+    color:red;
+    border:none;
+    margin-left:1rem
+}
+.sub-text{
+    display: none;
+}
+.playlist-delete-btn:hover +.sub-text{
+    position: absolute;
+    top:6rem;
+    right:26rem;
+    padding:0 0.5rem 0 0.5rem;
+    border: 0.5px solid whitesmoke;
+    display:block
+}
 @media screen and (max-width: 768px){
     .playlist{
         width:50%

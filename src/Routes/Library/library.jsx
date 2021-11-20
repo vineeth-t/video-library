@@ -25,7 +25,7 @@ export function Library(){
             </div>
         <div>
             {
-                playlists.map(({ playListId,playListName,listOfVideos})=>{
+                playlists?.map(({ playListId,playListName,listOfVideos})=>{
                     return(<>
                             <div className='library-list-header' >
                                     <span className='library-list-heading'>
@@ -34,7 +34,7 @@ export function Library(){
                                     <Link to={`/${playListId}`}>More</Link>                           
                             </div>
                             <div className='library-list-videos'>
-                                    { listOfVideos.map((video)=>{
+                                    { listOfVideos?.map((video)=>{
                                         const{id}=video;
                                         return( 
                                                 <Link to={`/videoPlayer/${id}`}>
