@@ -6,7 +6,7 @@ const[state,dispatch]=useReducer(stateReducer, {
                                               videoList:[],
                                               videoPlayingNow:{},
                                               likedVideo:[],
-                                              hambug:'leftNav',
+                                              hambug:'notLeftNav',
                                               toast:'',
                                               history:[],
                                               checkBox:false,

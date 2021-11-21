@@ -64,6 +64,17 @@ function App() {
               }
         })()
   },[dispatch])
+  useEffect(()=>{
+    (async function(){
+              try{
+                const {data:{response}}=await axios.get('https://video-library-server.vineetht.repl.co/notes')
+                dispatch({type:'SET_NOTES',payload:response})
+              }catch(error){
+                console.log(error);
+                dispatch({type:'TOAST',payload:'Refresh the Page'})
+              }
+        })()
+  },[dispatch])
   return (
     <div style={themeColor} className="App">
       <NavBar />

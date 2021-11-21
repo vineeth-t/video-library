@@ -1,21 +1,8 @@
 import { useParams } from 'react-router';
 import { useStateContext } from '../../contexts/index';
+import { deleteNotesById, notesHandler } from '../axios/axios.serverRequest';
 import './note.css'
-export function notesHandler(e,videoId,note,notesHolder,dispatch){
-    e.preventDefault();
-    // IF NOTES FOR A PARTICULAR VIDEO IS ALREADY PRESENT THEN WE WILL ADD TO IT DIRECTLY
-    if(notesHolder.find((notes)=>notes.videoId===videoId)){
-        dispatch({type:'ADD_TO_NOTES', 
-            videoId:videoId,
-            InputNote:{noteId:note,notesTaken:note}          
-    })
-}else{
-    dispatch({type:'SET_NEW_NOTES',
-    videoId:videoId,
-    listOfNotes:{noteId:note,notesTaken:note}
-    })
-}   
-}
+
 export function Notes(){
     const{state:{note,notesHolder},dispatch}=useStateContext();
     const{videoId}=useParams();
@@ -28,8 +15,7 @@ export function Notes(){
            
             {notes?.length!==0&&notes?.listOfNotes.map(({noteId,notesTaken})=>{
                 return <div className='notes-child'>{notesTaken}
-                        <button className='btn-remove' onClick={()=>
-                         dispatch({type:'DELETE_NOTE',noteId:noteId,videoId:videoId})}
+                        <button className='btn-remove' onClick={()=>deleteNotesById(videoId,noteId,dispatch)}
                     >
                              x
                         </button>

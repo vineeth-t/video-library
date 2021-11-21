@@ -68,3 +68,26 @@ export async function getDataFromServer(dispatch){
     }
 
 }
+export async function notesHandler(e,videoId,note,notesHolder,dispatch){
+  e.preventDefault();
+  // IF NOTES FOR A PARTICULAR VIDEO IS ALREADY PRESENT THEN WE WILL ADD TO IT DIRECTLY
+  if(notesHolder.find((notes)=>notes.videoId===videoId)){
+      const {data:{response}}=await axios.post(`https://video-library-server.vineetht.repl.co/notes/${videoId}`,{
+          listOfNotes:{noteId:note,notesTaken:note}
+      })
+  
+      dispatch({type:'SET_NOTES',payload:response})
+}else{
+  const {data:{response}}=await axios.post("https://video-library-server.vineetht.repl.co/notes",{
+      videoId:videoId,
+      listOfNotes:[{noteId:note,notesTaken:note}]
+  })
+  dispatch({type:'SET_NOTES',payload:response})
+}   
+}
+
+export async function deleteNotesById(videoId,notesId,dispatch){
+  const {data:{response}}=await axios.delete(`https://video-library-server.vineetht.repl.co/notes/${videoId}/${notesId}`)
+  console.log("s",{response})
+  dispatch({type:'SET_NOTES',payload:response})
+}
