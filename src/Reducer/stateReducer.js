@@ -2,23 +2,12 @@ export function stateReducer(state,action){
     switch(action.type){
         case 'SET_VIDEOS':
             return{...state,videoList:action.payload}
-        case 'LIKED_VIDEO':
-            if(state.likedVideo.some((video)=>video.id===action.videoId)){
-                return {
-                   
-                    ...state,likedVideo:[...state.likedVideo.filter((video)=>video.id!==action.videoId)],toast:'Video UnLiked'
-                }
-            }
-             //Instead of this we can use server calling to get likedVideos 
-            return {...state,likedVideo:[...state.likedVideo,state.videoList.find((video)=>video.id===action.videoId)],toast:'Video Liked'}
-        case 'REMOVE_FROM_LIKED_VIDEOS':
-                return {...state,likedVideo:[...state.likedVideo.filter((video)=>video.id!==action.videoId)]}
-              //Instead of this we can use server calling to get likedVideos  
+        case 'SET_LIKED_VIDEOS':
+            return {...state,likedVideo:action.payload}
         case 'SET_HISTORY':
             return {
                 ...state,history:action.payload
-            }
-           
+            } 
         case 'HAMBUG':
             return {...state,hambug:action.payload}
         case "TOAST":

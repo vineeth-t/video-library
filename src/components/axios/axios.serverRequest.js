@@ -4,29 +4,67 @@ import { checkBoxChanger } from "../playlist/playlistModal"
 export async function AddOrRemoveFromPlaylist(playlists,playListId,dispatch,videoPlayingNow){
     const{id}=videoPlayingNow
     if(checkBoxChanger(playlists,playListId,id)){
-      const {data:{response},status}=await axios.post(`https://video-library-server.vineetht.repl.co/playlists/${playListId}/videos`,{
-        listOfVideos:id
-      })
-      if(status===201){
-        dispatch({type:'SET_PLAYLISTS',payload:response})
-        dispatch({type:'TOAST',payload:'Video Removed'})
-        checkBoxChanger(playlists,playListId,id)
-      }
+      try{
+          const {data:{response},status}=await axios.post(`https://video-library-server.vineetht.repl.co/playlists/${playListId}/videos`,{
+            listOfVideos:id
+          })
+          if(status===201){
+            dispatch({type:'SET_PLAYLISTS',payload:response})
+            dispatch({type:'TOAST',payload:'Video Removed'})
+            checkBoxChanger(playlists,playListId,id)
+          }
+    }catch(error){
+      console.log(error);
+      alert(error)
+    }
+      
   }else{
-    const {data:{response},status}=await axios.post(`https://video-library-server.vineetht.repl.co/playlists/${playListId}/videos`,{
-        listOfVideos:videoPlayingNow
-    })
-    console.log({response,status})
+    try{
+      const {data:{response},status}=await axios.post(`https://video-library-server.vineetht.repl.co/playlists/${playListId}/videos`,{
+        listOfVideos:videoPlayingNow})
+
     if(status===201){
       dispatch({type:'SET_PLAYLISTS',payload:response})
       dispatch({type:'TOAST',payload:'Video Added'})
     }
+    }catch(error){
+      alert(error)
+    }
+    
   }
   }
 
   export async function deletePlaylist(libraryId,dispatch){
-    const {data:{response},status}=await axios.delete(`https://video-library-server.vineetht.repl.co/playlists/${libraryId}`)
-    if(status===201){
-        dispatch({type:'SET_PLAYLISTS',payload:response,msg:'Playlist Deleted'})
+    try{
+      const {data:{response},status}=await axios.delete(`https://video-library-server.vineetht.repl.co/playlists/${libraryId}`)
+      if(status===201){
+          dispatch({type:'SET_PLAYLISTS',payload:response,msg:'Playlist Deleted'})
+      }
+    }catch(error){
+      console.log(error)
     }
+
+}
+export async function likeUnlikeVideo(videoId,dispatch){
+  try{
+    const {data:{response}}=await axios.post(`https://video-library-server.vineetht.repl.co/likedVideos/${videoId}`)
+   dispatch({type:'SET_LIKED_VIDEOS',payload:response})
+  }catch(error){
+     console.log(error)
+  }
+}
+
+export async function getDataFromServer(dispatch){
+//Add this method to app.js after adding dataBAse
+   try{
+      const {data:{response}}=await axios.get('https://video-library-server.vineetht.repl.co')
+      dispatch({type:'SET_VIDEOS',payload:response.videoList});
+      dispatch({type:'SET_PLAYLISTS',payload:response.playlists})
+      dispatch({type:'SET_HISTORY',payload:response.history})
+      dispatch({type:'SET_LIKED_VIDEOS',payload:response.likedVideos})
+    }catch(error){
+      console.log(error);
+      dispatch({type:'TOAST',payload:'Refresh the Page'})
+    }
+
 }

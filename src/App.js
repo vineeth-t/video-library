@@ -16,11 +16,21 @@ import { Login } from "./components/loginCard/login";
 import{SignUp} from './components/signUpCard/signUpCard'
 import { NavBottom } from "./components/navbar/navBottom/navBottom";
 import { useEffect } from "react";
-import axios from "axios";
 import { useStateContext } from "./contexts";
+import axios from "axios";
 function App() {
   const { themeColor } = useThemeContext();
   const{dispatch}=useStateContext();
+  useEffect(()=>{
+    (async function(){
+      try{
+        const {data:{response}}=await axios.get(`https://video-library-server.vineetht.repl.co/likedVideos`)
+       dispatch({type:'SET_LIKED_VIDEOS',payload:response})
+      }catch(error){
+         console.log(error)
+      }
+        })()
+  },[dispatch])
   useEffect(()=>{
     (async function(){
               try{
