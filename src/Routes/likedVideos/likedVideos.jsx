@@ -4,9 +4,8 @@ import './likedVideos.css'
 import { Link } from 'react-router-dom';
 import { likeUnlikeVideo } from '../../components/axios/axios.serverRequest';
 export function LikedVideos(){
-    const {state:{likedVideo}}=useStateContext();
+    const {state:{likedVideo},dispatch}=useStateContext();
     const{theme}=useThemeContext();
-    const{dispatch}=useStateContext();
     return(
         <>
             {likedVideo.length===0?

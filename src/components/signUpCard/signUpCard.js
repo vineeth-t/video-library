@@ -1,14 +1,16 @@
 import { useReducer, useState } from "react";
 import { useNavigate,Navigate } from "react-router";
 import { Link } from "react-router-dom";
-import { useAuthContext } from "../../contexts/authContext";
+import { useStateContext,useAuthContext } from "../../contexts";
 import { errorHandler, formChecker } from "../../Reducer/formErrorReducer";
 import {signUpreducer}  from '../../Reducer/signUpReducer'
+import { signUpHandler } from "../axios/axios.serverRequest";
 import { InputFieldForPassword, Mask } from "./inputFieldForPAssword";
 import './signUpCard.css'
 export function SignUp(){
   const navigate = useNavigate();
-  const{state:{login},dispatch}=useAuthContext()
+  const{authState:{login},authDispatch}=useAuthContext();
+  const{dispatch}=useStateContext()
   const [formState, formDispatch] = useReducer(signUpreducer, {
     fname: "",
     lname: "",
@@ -18,19 +20,9 @@ export function SignUp(){
   });
   const[mask,setMask]=useState(true)
   const [errorState,errorDispatch]=useReducer(errorHandler,{})
-  const{fname}=formState;
   function clearingError(type){
     errorDispatch({type,payload:''})
   }
-
-  function signUpHandler(e,fname){
-                                e.preventDefault();
-                                if (formChecker(formState,errorDispatch)) {
-                                  dispatch({type:'LOGIN',payload:fname})
-                                  navigate('/profile')
-                                } 
-                                
-                              }
   return (login ? <Navigate to='/profile'/>: 
       <div className="signup">
         <h2>SIGN-UP</h2><br/>
@@ -38,8 +30,7 @@ export function SignUp(){
         <form
           onSubmit={(e) =>
             signUpHandler(
-              e,
-              fname
+              e,errorDispatch,formState,authDispatch,formChecker,navigate,dispatch
             )
           }
           className="signup-form"

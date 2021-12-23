@@ -9,6 +9,7 @@ export function stateReducer(state,action){
                 ...state,history:action.payload
             } 
         case "TOAST":
+            console.log("toast",action.payload)
             return{...state,toast:action.payload}
         case 'REMOVE_TOAST':
             return{...state,toast:''}
