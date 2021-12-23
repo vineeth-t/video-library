@@ -91,3 +91,42 @@ export async function deleteNotesById(videoId,notesId,dispatch){
   console.log("s",{response})
   dispatch({type:'SET_NOTES',payload:response})
 }
+
+export async function signUpHandler(e,errorDispatch,formState,authDispatch,formChecker,navigate,dispatch){
+  console.log(formState)
+  e.preventDefault();
+    if(formChecker(formState,errorDispatch)) {
+        const {data:{response,userId,message}}=await axios.post(`https://video-library-server-mongoose.vineetht.repl.co/signUp`,{firstname:formState.fname,lastname:formState.lname,username:formState.emailId,
+        password:formState.password}) 
+        if(response){
+            localStorage?.setItem('login',JSON.stringify({isUserLoggedIn:true,userName:formState.fname,userId:userId}))
+            authDispatch({type:'LOGIN',payload:{fname:formState.fname,userId:userId}})
+            navigate('/profile')
+        }else{
+          console.log(response)
+            dispatch({type:'TOAST',payload:message})
+            // navigate('/signUp');
+         
+        }
+            
+    }   
+  
+}
+export async function loginHandler(event,loginDetails){
+  event.preventDefault ();
+  const{state,userName,password,authDispatch,navigate,dispatch}=loginDetails
+  try{
+    const {data:{response,fname,userId,message}}=await axios.post(`https://video-library-server-mongoose.vineetht.repl.co/logIn`,{username:userName,password:password})
+    if(response){
+        localStorage?.setItem('login',JSON.stringify({isUserLoggedIn:true,userName:fname,userId:userId}))
+        authDispatch({type:'LOGIN',payload:{fname,userId}})
+        navigate(state?.from?state.from:'/profile')
+    }else{
+      dispatch({type:'TOAST',payload:message})
+    }
+  }catch(error){
+      console.log(error)
+      dispatch({type:'TOAST',payload:error})
+  }
+
+}
