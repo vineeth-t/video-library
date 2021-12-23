@@ -2,10 +2,10 @@ import { useNavigate } from "react-router"
 import { useAuthContext } from "../../contexts"
 
 export function Profile(){
-    const{state:{userName},dispatch}=useAuthContext();
+    const{authState:{userName},authDispatch}=useAuthContext();
     const navigate=useNavigate();
     function logoutHandler(){
-        dispatch({type:'LOGOUT'})
+        authDispatch({type:'LOGOUT'})
         localStorage.removeItem('login')
         navigate('/login')
     }

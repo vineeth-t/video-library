@@ -8,7 +8,7 @@ export function NavBar(){
 const{state:{toast}}=useStateContext();
 const{theme,themeColor,themeChanger}=useThemeContext();
 const[hamBug,setHambug]=useState(false)
-const{state:{login}}=useAuthContext()
+const{authState:{login}}=useAuthContext()
     return (  
        <>
          <nav style={themeColor} className='navbar'>
