@@ -1,6 +1,7 @@
 import axios from "axios"
 import { checkBoxChanger } from "../playlist/playlistModal"
 
+export const API = 'https://video-library-server-mongoose.vineetht.repl.co'
 export async function AddOrRemoveFromPlaylist(playlists,playListId,dispatch,videoPlayingNow){
     const{id}=videoPlayingNow
     if(checkBoxChanger(playlists,playListId,id)){
@@ -45,10 +46,17 @@ export async function AddOrRemoveFromPlaylist(playlists,playListId,dispatch,vide
     }
 
 }
-export async function likeUnlikeVideo(videoId,dispatch){
+export async function likeUnlikeVideo(videoId,dispatch,userId){
+  console.log('hello')
   try{
-    const {data:{response}}=await axios.post(`https://video-library-server.vineetht.repl.co/likedVideos/${videoId}`)
-   dispatch({type:'SET_LIKED_VIDEOS',payload:response})
+    const {data:{response,liked,message}}=await axios.post(`${API}/likedVideos/${userId}`,{videoId})
+    console.log(liked)
+    if(response){
+      dispatch({type:'SET_LIKED_VIDEOS',payload:liked})
+    }else{
+      dispatch({type:'TOAST',payload:message})
+    }
+
   }catch(error){
      console.log(error)
   }
@@ -128,5 +136,34 @@ export async function loginHandler(event,loginDetails){
       console.log(error)
       dispatch({type:'TOAST',payload:error})
   }
+
+}
+
+export async function getVideosFromDB(dispatch){
+
+    try{
+      const {data:{response,videos,message}}=await axios.get(`${API}/videos`)
+      if(response){
+        dispatch({type:'SET_VIDEOS',payload:videos})
+      }else{
+        dispatch({type:'TOAST',payload:message})
+      }
+      
+    }catch(error){
+      console.log(error);
+      dispatch({type:'TOAST',payload:'Refresh the Page'})
+    }
+}
+
+export async function findCurrentVideo(setVideoPlayingNow,videoId,dispatch,navigate){
+ 
+    const {data:{response,message,videoPlaying}}= await axios.get(`${API}/videos/${videoId}`)
+    if(response){
+      setVideoPlayingNow(videoPlaying)
+    }else{
+      navigate('/')
+      dispatch({type:'TOAST',payload:message})
+    }
+  
 
 }

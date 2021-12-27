@@ -11,7 +11,7 @@ export function LikedVideos(){
             {likedVideo.length===0?
                 <h3 style={{textAlign:"center"}}>No liked Videos </h3>:
             <div >
-                {likedVideo.map((video)=>{
+                {likedVideo.map(({video})=>{
                     const{id}=video
                     return (
                             <div className='playlist-videos'>

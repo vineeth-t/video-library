@@ -3,7 +3,7 @@ export function stateReducer(state,action){
         case 'SET_VIDEOS':
             return{...state,videoList:action.payload}
         case 'SET_LIKED_VIDEOS':
-            return {...state,likedVideo:action.payload}
+            return {...state,likedVideos:action.payload}
         case 'SET_HISTORY':
             return {
                 ...state,history:action.payload
