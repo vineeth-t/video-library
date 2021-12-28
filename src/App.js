@@ -16,32 +16,20 @@ import { Login } from "./components/loginCard/login";
 import{SignUp} from './components/signUpCard/signUpCard'
 import { NavBottom } from "./components/navbar/navBottom/navBottom";
 import { useEffect } from "react";
-import { useStateContext } from "./contexts";
+import { useAuthContext, useStateContext } from "./contexts";
 import axios from "axios";
+import { getLikedVideosFromDB, getVideosFromDB } from "./components/axios/axios.serverRequest";
 function App() {
   const { themeColor } = useThemeContext();
   const{dispatch}=useStateContext();
+  const{authState:{userId}}= useAuthContext()
   useEffect(()=>{
-    (async function(){
-      try{
-        const {data:{response}}=await axios.get(`https://video-library-server.vineetht.repl.co/likedVideos`)
-       dispatch({type:'SET_LIKED_VIDEOS',payload:response})
-      }catch(error){
-         console.log(error)
-      }
-        })()
+    getVideosFromDB(dispatch)
+  
   },[dispatch])
   useEffect(()=>{
-    (async function(){
-              try{
-                const {data:{response}}=await axios.get('https://video-library-server.vineetht.repl.co/videos')
-                dispatch({type:'SET_VIDEOS',payload:response})
-              }catch(error){
-                console.log(error);
-                dispatch({type:'TOAST',payload:'Refresh the Page'})
-              }
-        })()
-  },[dispatch])
+    getLikedVideosFromDB(userId,dispatch)
+  },[userId,dispatch])
   useEffect(()=>{
     (async function(){
               try{

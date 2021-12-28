@@ -1,24 +1,23 @@
-export function stateReducer(state,action){
-    switch(action.type){
+export function stateReducer(state,{type,payload}){
+    switch(type){
         case 'SET_VIDEOS':
-            return{...state,videoList:action.payload}
+            return{...state,videoList:payload}
         case 'SET_LIKED_VIDEOS':
-            return {...state,likedVideos:action.payload}
+            return {...state,likedVideos:payload.liked,toast:payload.message}
         case 'SET_HISTORY':
             return {
-                ...state,history:action.payload
+                ...state,history:payload
             } 
         case "TOAST":
-            console.log("toast",action.payload)
-            return{...state,toast:action.payload}
+            return{...state,toast:payload}
         case 'REMOVE_TOAST':
             return{...state,toast:''}
         case 'SET_PLAYLISTS':
-            return {...state,playlists:action.payload,toast:action.msg}  
+            return {...state,playlists:payload,toast:payload.msg}  
         case 'SET_NOTE_CONTENT':
-            return {...state,note:action.payload}
+            return {...state,note:payload}
          case 'SET_NOTES':
-                return{...state,notesHolder:action.payload,note:''}    
+                return{...state,notesHolder:payload,note:''}    
         default:
                 return {...state}
             
