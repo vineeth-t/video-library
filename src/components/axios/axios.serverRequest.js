@@ -47,35 +47,18 @@ export async function AddOrRemoveFromPlaylist(playlists,playListId,dispatch,vide
 
 }
 export async function likeUnlikeVideo(videoId,dispatch,userId){
-  console.log('hello')
   try{
     const {data:{response,liked,message}}=await axios.post(`${API}/likedVideos/${userId}`,{videoId})
-    console.log(liked)
     if(response){
-      dispatch({type:'SET_LIKED_VIDEOS',payload:liked})
+      dispatch({type:'SET_LIKED_VIDEOS',payload:{liked,message}})
     }else{
       dispatch({type:'TOAST',payload:message})
     }
-
   }catch(error){
      console.log(error)
   }
 }
 
-export async function getDataFromServer(dispatch){
-//Add this method to app.js after adding dataBAse
-   try{
-      const {data:{response}}=await axios.get('https://video-library-server.vineetht.repl.co')
-      dispatch({type:'SET_VIDEOS',payload:response.videoList});
-      dispatch({type:'SET_PLAYLISTS',payload:response.playlists})
-      dispatch({type:'SET_HISTORY',payload:response.history})
-      dispatch({type:'SET_LIKED_VIDEOS',payload:response.likedVideos})
-    }catch(error){
-      console.log(error);
-      dispatch({type:'TOAST',payload:'Refresh the Page'})
-    }
-
-}
 export async function notesHandler(e,videoId,note,notesHolder,dispatch){
   e.preventDefault();
   // IF NOTES FOR A PARTICULAR VIDEO IS ALREADY PRESENT THEN WE WILL ADD TO IT DIRECTLY
@@ -164,6 +147,19 @@ export async function findCurrentVideo(setVideoPlayingNow,videoId,dispatch,navig
       navigate('/')
       dispatch({type:'TOAST',payload:message})
     }
-  
+}
 
+export async function getLikedVideosFromDB(userId,dispatch){
+
+  try{
+    const {data:{response,liked,message}}=await axios.get(`${API}/likedVideos/${userId}`)
+    if(response){
+      dispatch({type:'SET_LIKED_VIDEOS',payload:{liked}})
+    }else{
+      dispatch({type:'TOAST',payload:message})
+    }
+  }catch(error){
+    console.log(error);
+    dispatch({type:'TOAST',payload:'Refresh the Page'})
+  }
 }
