@@ -18,7 +18,7 @@ import { NavBottom } from "./components/navbar/navBottom/navBottom";
 import { useEffect } from "react";
 import { useAuthContext, useStateContext } from "./contexts";
 import axios from "axios";
-import { getLikedVideosFromDB, getVideosFromDB } from "./components/axios/axios.serverRequest";
+import { getHistoryFromDB, getLikedVideosFromDB, getVideosFromDB } from "./components/axios/axios.serverRequest";
 function App() {
   const { themeColor } = useThemeContext();
   const{dispatch}=useStateContext();
@@ -28,7 +28,8 @@ function App() {
   
   },[dispatch])
   useEffect(()=>{
-    getLikedVideosFromDB(userId,dispatch)
+    getLikedVideosFromDB(userId,dispatch);
+    getHistoryFromDB(userId,dispatch)
   },[userId,dispatch])
   useEffect(()=>{
     (async function(){
@@ -41,17 +42,7 @@ function App() {
               }
         })()
   },[dispatch])
-  useEffect(()=>{
-    (async function(){
-              try{
-                const {data:{response}}=await axios.get('https://video-library-server.vineetht.repl.co/history')
-                dispatch({type:'SET_HISTORY',payload:response})
-              }catch(error){
-                console.log(error);
-                dispatch({type:'TOAST',payload:'Refresh the Page'})
-              }
-        })()
-  },[dispatch])
+
   useEffect(()=>{
     (async function(){
               try{
