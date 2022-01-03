@@ -2,50 +2,7 @@ import axios from "axios"
 import { checkBoxChanger } from "../playlist/playlistModal"
 
 export const API = 'https://video-library-server-mongoose.vineetht.repl.co'
-export async function AddOrRemoveFromPlaylist(playlists,playListId,dispatch,videoPlayingNow){
-    const{id}=videoPlayingNow
-    if(checkBoxChanger(playlists,playListId,id)){
-      try{
-          const {data:{response},status}=await axios.post(`https://video-library-server.vineetht.repl.co/playlists/${playListId}/videos`,{
-            listOfVideos:id
-          })
-          if(status===201){
-            dispatch({type:'SET_PLAYLISTS',payload:response})
-            dispatch({type:'TOAST',payload:'Video Removed'})
-            checkBoxChanger(playlists,playListId,id)
-          }
-    }catch(error){
-      console.log(error);
-      alert(error)
-    }
-      
-  }else{
-    try{
-      const {data:{response},status}=await axios.post(`https://video-library-server.vineetht.repl.co/playlists/${playListId}/videos`,{
-        listOfVideos:videoPlayingNow})
 
-    if(status===201){
-      dispatch({type:'SET_PLAYLISTS',payload:response})
-      dispatch({type:'TOAST',payload:'Video Added'})
-    }
-    }catch(error){
-      alert(error)
-    }
-    
-  }
-  }
-
-  export async function deletePlaylist(libraryId,dispatch){
-    try{
-      const {data:{response},status}=await axios.delete(`https://video-library-server.vineetht.repl.co/playlists/${libraryId}`)
-      if(status===201){
-          dispatch({type:'SET_PLAYLISTS',payload:response,msg:'Playlist Deleted'})
-      }
-    }catch(error){
-      console.log(error)
-    }
-
-}
 export async function likeUnlikeVideo(videoId,dispatch,userId){
   try{
     const {data:{response,liked,message}}=await axios.post(`${API}/likedVideos/${userId}`,{videoId})
@@ -63,13 +20,13 @@ export async function notesHandler(e,videoId,note,notesHolder,dispatch){
   e.preventDefault();
   // IF NOTES FOR A PARTICULAR VIDEO IS ALREADY PRESENT THEN WE WILL ADD TO IT DIRECTLY
   if(notesHolder.find((notes)=>notes.videoId===videoId)){
-      const {data:{response}}=await axios.post(`https://video-library-server.vineetht.repl.co/notes/${videoId}`,{
+      const {data:{response}}=await axios.post(`${API}/notes/${videoId}`,{
           listOfNotes:{noteId:note,notesTaken:note}
       })
   
       dispatch({type:'SET_NOTES',payload:response})
 }else{
-  const {data:{response}}=await axios.post("https://video-library-server.vineetht.repl.co/notes",{
+  const {data:{response}}=await axios.post(`${API}`,{
       videoId:videoId,
       listOfNotes:[{noteId:note,notesTaken:note}]
   })
@@ -78,7 +35,7 @@ export async function notesHandler(e,videoId,note,notesHolder,dispatch){
 }
 
 export async function deleteNotesById(videoId,notesId,dispatch){
-  const {data:{response}}=await axios.delete(`https://video-library-server.vineetht.repl.co/notes/${videoId}/${notesId}`)
+  const {data:{response}}=await axios.delete(`${API}/notes/${videoId}/${notesId}`)
   console.log("s",{response})
   dispatch({type:'SET_NOTES',payload:response})
 }
@@ -87,17 +44,16 @@ export async function signUpHandler(e,errorDispatch,formState,authDispatch,formC
   console.log(formState)
   e.preventDefault();
     if(formChecker(formState,errorDispatch)) {
-        const {data:{response,userId,message}}=await axios.post(`https://video-library-server-mongoose.vineetht.repl.co/signUp`,{firstname:formState.fname,lastname:formState.lname,username:formState.emailId,
+        const {data:{response,userId,message}}=await axios.post(`${API}/signUp`,{firstname:formState.fname,lastname:formState.lname,username:formState.emailId,
         password:formState.password}) 
+        console.log(formState.fname,userId)
         if(response){
             localStorage?.setItem('login',JSON.stringify({isUserLoggedIn:true,userName:formState.fname,userId:userId}))
-            authDispatch({type:'LOGIN',payload:{fname:formState.fname,userId:userId}})
+            authDispatch({type:'LOGIN',payload:{userName:formState.fname,userId:userId}})
             navigate('/profile')
         }else{
           console.log(response)
             dispatch({type:'TOAST',payload:message})
-            // navigate('/signUp');
-         
         }
             
     }   
@@ -107,10 +63,10 @@ export async function loginHandler(event,loginDetails){
   event.preventDefault ();
   const{state,userName,password,authDispatch,navigate,dispatch}=loginDetails
   try{
-    const {data:{response,fname,userId,message}}=await axios.post(`https://video-library-server-mongoose.vineetht.repl.co/logIn`,{username:userName,password:password})
+    const {data:{response,fname,userId,message}}=await axios.post(`${API}/logIn`,{username:userName,password:password})
     if(response){
         localStorage?.setItem('login',JSON.stringify({isUserLoggedIn:true,userName:fname,userId:userId}))
-        authDispatch({type:'LOGIN',payload:{fname,userId}})
+        authDispatch({type:'LOGIN',payload:{userName:fname,userId}})
         navigate(state?.from?state.from:'/profile')
     }else{
       dispatch({type:'TOAST',payload:message})
@@ -148,6 +104,16 @@ export async function findCurrentVideo(setVideoPlayingNow,videoId,dispatch,navig
       dispatch({type:'TOAST',payload:message})
     }
 }
+export async function findCurrentPlaylist(userId,playlistId,setCurrentPlaylist,dispatch){
+  console.log('hello')
+  const {data:{response,playlist,message}}= await axios.get(`${API}/playlists/${userId}/${playlistId}`)
+  console.log(playlist)
+  if(response){
+      setCurrentPlaylist(playlist)
+  }else{
+    dispatch({type:'TOAST',payload:message})
+  }
+}
 
 export async function getLikedVideosFromDB(userId,dispatch){
 
@@ -178,7 +144,7 @@ export async function getHistoryFromDB(userId,dispatch){
   }
 }
 
-export const historyHandler=async(userId,dispatch,videoId,flag)=>{
+export async function historyHandler(userId,dispatch,videoId,flag){
   try{
     const {data:{response,historyVideos,message}}=await axios.post(`${API}/history/${userId}`,{videoId,flag})
     if(response){
@@ -191,3 +157,94 @@ export const historyHandler=async(userId,dispatch,videoId,flag)=>{
   }
 
 } 
+
+export async function getPlaylistsFromDB(userId,dispatch){
+  try{
+    const {data:{response,playlists,message}}=await axios.get(`${API}/playlists/${userId}`)
+    console.log({playlists})
+    if(response){
+      dispatch({type:'SET_PLAYLISTS',payload:playlists})
+    }else{
+      dispatch({type:'TOAST',payload:message})
+    }
+
+  }catch(error){
+    console.log(error);
+    dispatch({type:'TOAST',payload:'Refresh the Page'})
+  }
+}
+
+
+export async function AddOrRemoveFromPlaylist(playlists,userId,playListId,playListName,videoId,dispatch,setCurrentPlaylist){
+  console.log(checkBoxChanger(playlists,playListId,videoId))
+  try{
+    if(checkBoxChanger(playlists,playListId,videoId)){
+      const {data:{response,message,playlists}}=await axios.post(`${API}/playlists/${userId}/${playListId}`,{videoId,name:playListName,flag:'DELETE'})
+      if(response){
+        dispatch({type:'SET_PLAYLISTS',payload:playlists})
+        dispatch({type:'TOAST',payload:message});
+        setCurrentPlaylist(null)
+       }else{
+           dispatch({type:'TOAST',payload:'playlist deleted'})
+       }
+    }else{
+      const {data:{response,message,playlists}}=await axios.post(`${API}/playlists/${userId}/${playListId}`,{videoId,name:playListName,flag:'ADD'})
+      if(response){
+        dispatch({type:'SET_PLAYLISTS',payload:playlists})
+        dispatch({type:'TOAST',payload:message})
+       }else{
+           dispatch({type:'TOAST',payload:'playlist deleted'})
+       }
+    }
+   
+    
+  }catch(error){
+    console.log(error);
+    dispatch({type:'TOAST',PAYLOAD:'Refresh the Page'})
+  }
+ 
+
+  
+  }
+  export async function createNewPlalist(playlists,userId,videoId,newPlayListName,dispatch,setNewPlayListName){
+    if(newPlayListName===''||newPlayListName===undefined ){
+        alert('Enter a name');
+        dispatch({type:'TOAST',payload:'Name required'})
+    }else if(playlists.some(({playListName})=>playListName===newPlayListName)){
+      alert('Name already exists');
+        dispatch({type:'TOAST',payload:'Name already exists'});
+        setNewPlayListName('')
+    }else{
+        const {data:{response,playlists,message}}=await axios.post(`${API}/playlists/${userId}`,{videoId,name:newPlayListName  })
+     if(response){
+        dispatch({type:'SET_PLAYLISTS',payload:playlists})
+        dispatch({type:'TOAST',payload:message})
+        setNewPlayListName('')
+       }else{
+           dispatch({type:'TOAST',payload:'something went wrong'})
+       }
+    }
+   
+}  
+  export async function deletePlaylist(userId,playlistId,dispatch){
+    try{
+      const {data:{response,playlists}}=await axios.delete(`${API}/playlists/${userId}/${playlistId}`)
+      if(response){
+          dispatch({type:'SET_PLAYLISTS',payload:playlists,msg:'Playlist Deleted'})
+      }else{
+        dispatch({type:'TOAST',PAYLOAD:'Something went wrong'})
+      }
+    }catch(error){
+      console.log(error)
+    }
+
+}
+export async function getNotesFromDB(dispatch){
+  try{
+    const {data:{response}}=await axios.get(`${API}/notes`)
+    dispatch({type:'SET_NOTES',payload:response})
+  }catch(error){
+    console.log(error);
+    dispatch({type:'TOAST',payload:'Refresh the Page'})
+  }
+}

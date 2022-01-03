@@ -17,43 +17,22 @@ import{SignUp} from './components/signUpCard/signUpCard'
 import { NavBottom } from "./components/navbar/navBottom/navBottom";
 import { useEffect } from "react";
 import { useAuthContext, useStateContext } from "./contexts";
-import axios from "axios";
-import { getHistoryFromDB, getLikedVideosFromDB, getVideosFromDB } from "./components/axios/axios.serverRequest";
+import { getHistoryFromDB, getLikedVideosFromDB, getNotesFromDB, getPlaylistsFromDB, getVideosFromDB } from "./components/axios/axios.serverRequest";
 function App() {
   const { themeColor } = useThemeContext();
   const{dispatch}=useStateContext();
   const{authState:{userId}}= useAuthContext()
   useEffect(()=>{
     getVideosFromDB(dispatch)
-  
+    getNotesFromDB(dispatch)
   },[dispatch])
   useEffect(()=>{
     getLikedVideosFromDB(userId,dispatch);
-    getHistoryFromDB(userId,dispatch)
+    getHistoryFromDB(userId,dispatch);
+    getPlaylistsFromDB(userId,dispatch)
   },[userId,dispatch])
-  useEffect(()=>{
-    (async function(){
-              try{
-                const {data:{response}}=await axios.get('https://video-library-server.vineetht.repl.co/playlists')
-                dispatch({type:'SET_PLAYLISTS',payload:response})
-              }catch(error){
-                console.log(error);
-                dispatch({type:'TOAST',payload:'Refresh the Page'})
-              }
-        })()
-  },[dispatch])
+ 
 
-  useEffect(()=>{
-    (async function(){
-              try{
-                const {data:{response}}=await axios.get('https://video-library-server.vineetht.repl.co/notes')
-                dispatch({type:'SET_NOTES',payload:response})
-              }catch(error){
-                console.log(error);
-                dispatch({type:'TOAST',payload:'Refresh the Page'})
-              }
-        })()
-  },[dispatch])
   return (
     <div style={themeColor} className="App">
       <NavBar />
@@ -64,7 +43,7 @@ function App() {
         <Route path='/signUp' element={<SignUp/>}/>
         <PrivateRoute path='/profile' element={<Profile/>}/>
         <PrivateRoute path="/library" element={<Library />} />
-        <PrivateRoute path='/:libraryId' element={<ShowIndividualPlayList/>}/>
+        <PrivateRoute path='/library/:playlistId' element={<ShowIndividualPlayList/>}/>
         <PrivateRoute path="/likedVideos" element={<LikedVideos/>} />
         <PrivateRoute path="/WatchLater" element={<WatchLater />} />
         <PrivateRoute path='/history' element={<History/>}/>
