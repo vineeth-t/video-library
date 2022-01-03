@@ -1,21 +1,19 @@
-import { useParams } from "react-router";
-import { useStateContext } from "../../contexts";
+import { useAuthContext, useStateContext } from "../../contexts";
 import {AddOrRemoveFromPlaylist} from "../axios/axios.serverRequest"
-export function PlaylistModal({videoPlayingNow}) {
-    const{videoId}=useParams()
-    
+export function PlaylistModal({videoId}) {
     const {state:{playlists},dispatch}=useStateContext();
-    console.log(playlists)
-  return  playlists.map(({playListName,playListId})=>(
+    const{authState:{userId}}=useAuthContext()
+  return  playlists.map(({playListName,_id})=>(
        <label style={{color:'black'}}>    
-            <input type='checkbox' checked={checkBoxChanger(playlists,playListId,videoId)}
-             onChange={()=>AddOrRemoveFromPlaylist(playlists,playListId,dispatch,videoPlayingNow)}/>
+            <input type='checkbox' checked={checkBoxChanger(playlists,_id,videoId)}
+             onChange={()=>AddOrRemoveFromPlaylist(playlists,userId,_id,playListName,videoId,dispatch)}/>
             <span>{playListName}</span>
         </label>
   ))}
 
   export function checkBoxChanger(playlists,playListId,videoId){
-    const playlistOpened = playlists.find((playlist)=>playlist.playListId===playListId)  
-    return playlistOpened.listOfVideos.some((video)=>video.id===videoId)?true:false
+    console.log(playlists,playListId,videoId)
+    const playlistOpened = playlists.find((playlist)=>playlist._id===playListId) 
+    return playlistOpened.listOfVideos.some(({video})=>video._id===videoId)?true:false
    
   }
