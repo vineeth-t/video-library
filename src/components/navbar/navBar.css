@@ -40,6 +40,10 @@
     align-items: center;
     
 }
+.navbar-login{
+margin-right: 2rem;
+text-align: center;
+}
 .svg-img{
     fill:var(--text-color);
 }
@@ -49,7 +53,7 @@
 .navbar-theme{
     padding:0.5rem;
     border:none;
-    background-color: white;
+    background-color: transparent;
 }
 @media screen and (max-width: 768px){
     /* .hambug-icon{
@@ -58,6 +62,9 @@
     .nav-icon{
             margin-left:0;
 
+    }
+    .navbar-login{
+        display: none;
     }
 }
 
