@@ -1,14 +1,14 @@
-import {useStateContext} from '../../contexts/index'
+import {useStateContext,useAuthContext,useThemeContext} from '../../contexts/index'
 import { NavLink } from 'react-router-dom';
-import { useThemeContext } from '../../contexts/themeContext';
 import {historyHandler} from '../axios/axios.serverRequest'
 export function VideoCard({video}){
-    const{dispatch}=useStateContext()
+    const{dispatch}=useStateContext();
+    const{authState:{userId}}=useAuthContext()
     const {_id,id,name,views,UploadedDate,channelName,img}=video;
     const{themeColor}=useThemeContext()
     return(
     <NavLink to={`/videoPlayer/${id}`}>
-             <div style={themeColor} className='video-card' onClick={()=>historyHandler(dispatch,_id)}>
+             <div style={themeColor} className='video-card' onClick={()=>historyHandler(userId,dispatch,_id)}>
                       <img className='thumbnail' src={`https://img.youtube.com/vi/${id}/mqdefault.jpg`} alt='thumbnail' />
                       <div className='video-details'>
                             <div>

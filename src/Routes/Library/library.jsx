@@ -17,7 +17,7 @@ export function Library(){
             </div>
             {history.length===0&&<p>Videos you watch will show up here. <Link to='/' style={{color:'blue'}}>Browse videos</Link></p>}
             <div className='library-list-videos'>
-                {history.map((video)=>
+                {history.map(({video})=>
                 {
                     return <VideoCard video={video}/>
                  })
@@ -25,16 +25,16 @@ export function Library(){
             </div>
         <div>
             {
-                playlists?.map(({ playListId,playListName,listOfVideos})=>{
+                playlists?.map(({ _id,playListName,listOfVideos})=>{
                     return(<>
                             <div className='library-list-header' >
                                     <span className='library-list-heading'>
                                         <h3>{playListName}</h3>
                                     </span>
-                                    <Link to={`/${playListId}`}>More</Link>                           
+                                    <Link to={`/library/${_id}`}>More</Link>                           
                             </div>
                             <div className='library-list-videos'>
-                                    { listOfVideos?.map((video)=>{
+                                    { listOfVideos?.map(({video})=>{
                                         const{id}=video;
                                         return( 
                                                 <Link to={`/videoPlayer/${id}`}>
