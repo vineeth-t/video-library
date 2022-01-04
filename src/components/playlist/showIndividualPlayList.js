@@ -23,7 +23,7 @@ export function ShowIndividualPlayList(){
          }
          console.log('2')
         }())
-     },[userId,playlistId,dispatch]);
+     });
     return (  
         <div>This is playlists</div>
     )}
