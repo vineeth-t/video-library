@@ -165,7 +165,7 @@ export async function getPlaylistsFromDB(userId,dispatch){
 }
 
 
-export async function AddOrRemoveFromPlaylist(playlists,userId,playListId,playListName,videoId,dispatch,setCurrentPlaylist){
+export async function AddOrRemoveFromPlaylist(playlists,userId,playListId,playListName,videoId,dispatch){
   console.log(checkBoxChanger(playlists,playListId,videoId))
   try{
     if(checkBoxChanger(playlists,playListId,videoId)){
@@ -173,7 +173,6 @@ export async function AddOrRemoveFromPlaylist(playlists,userId,playListId,playLi
       if(response){
         dispatch({type:'SET_PLAYLISTS',payload:playlists})
         dispatch({type:'TOAST',payload:message});
-        setCurrentPlaylist(null)
        }else{
            dispatch({type:'TOAST',payload:'playlist deleted'})
        }
