@@ -95,8 +95,7 @@ export async function getVideosFromDB(dispatch){
 }
 
 export async function findCurrentVideo(setVideoPlayingNow,videoId,dispatch,navigate){
- 
-    const {data:{response,message,videoPlaying}}= await axios.get(`${API}/videos/${videoId}`)
+  const {data:{response,message,videoPlaying}}= await axios.get(`${API}/videos/${videoId}`)
     if(response){
       setVideoPlayingNow(videoPlaying)
     }else{
@@ -104,16 +103,7 @@ export async function findCurrentVideo(setVideoPlayingNow,videoId,dispatch,navig
       dispatch({type:'TOAST',payload:message})
     }
 }
-export async function findCurrentPlaylist(userId,playlistId,setCurrentPlaylist,dispatch){
-  console.log('hello')
-  const {data:{response,playlist,message}}= await axios.get(`${API}/playlists/${userId}/${playlistId}`)
-  console.log(playlist)
-  if(response){
-      setCurrentPlaylist(playlist)
-  }else{
-    dispatch({type:'TOAST',payload:message})
-  }
-}
+
 
 export async function getLikedVideosFromDB(userId,dispatch){
 
@@ -161,7 +151,7 @@ export async function historyHandler(userId,dispatch,videoId,flag){
 export async function getPlaylistsFromDB(userId,dispatch){
   try{
     const {data:{response,playlists,message}}=await axios.get(`${API}/playlists/${userId}`)
-    console.log({playlists})
+    console.log({playlists,response})
     if(response){
       dispatch({type:'SET_PLAYLISTS',payload:playlists})
     }else{

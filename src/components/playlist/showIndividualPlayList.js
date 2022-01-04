@@ -1,11 +1,12 @@
 
+import axios from "axios";
 import { useState } from "react";
 import { useParams } from "react-router"
 import { Link } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
 import { VerticalVideoCard } from "..";
 import { useAuthContext, useStateContext,useThemeContext } from "../../contexts";
-import { AddOrRemoveFromPlaylist, deletePlaylist, findCurrentPlaylist } from "../axios/axios.serverRequest";
+import { AddOrRemoveFromPlaylist, API, deletePlaylist } from "../axios/axios.serverRequest";
 export function ShowIndividualPlayList(){
     const{theme}=useThemeContext();
     const{state:{playlists},dispatch}=useStateContext();
@@ -14,7 +15,17 @@ export function ShowIndividualPlayList(){
     const{authState:{userId}}=useAuthContext()
 
     useEffect(()=>{
-        findCurrentPlaylist(userId,playlistId,setCurrentPlaylist,dispatch)
+       (async function(){
+        console.log('1')
+        const {data:{response,playlist,message}}= await axios.get(`${API}/playlists/${userId}/${playlistId}`)
+        console.log(playlist)
+        if(response){
+            setCurrentPlaylist(playlist)
+        }else{
+          dispatch({type:'TOAST',payload:message})
+        }
+        console.log('2')
+       }())
     },[userId,playlistId,dispatch]);
     return (  
         <div> 
