@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useStateContext,useAuthContext } from "../../contexts";
 import { errorHandler, formChecker } from "../../Reducer/formErrorReducer";
 import {signUpreducer}  from '../../Reducer/signUpReducer'
-import { signUpHandler } from "../axios/axios.serverRequest";
+import { signUpHandler } from "../axios";
 import { InputFieldForPassword, Mask } from "./inputFieldForPAssword";
 import './signUpCard.css'
 export function SignUp(){

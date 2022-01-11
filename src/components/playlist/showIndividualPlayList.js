@@ -2,8 +2,7 @@ import { useParams } from "react-router"
 import { Link } from "react-router-dom";
 import { VerticalVideoCard } from "..";
 import { useAuthContext, useStateContext,useThemeContext } from "../../contexts";
-import { AddOrRemoveFromPlaylist, deletePlaylist } from "../axios/axios.serverRequest";
-
+import { AddOrRemoveFromPlaylist,deletePlaylist } from "../../components/axios";
 export function ShowIndividualPlayList(){
     const{theme}=useThemeContext();
     const {playlistId}=useParams();

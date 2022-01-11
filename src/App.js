@@ -17,7 +17,8 @@ import{SignUp} from './components/signUpCard/signUpCard'
 import { NavBottom } from "./components/navbar/navBottom/navBottom";
 import { useEffect } from "react";
 import { useAuthContext, useStateContext } from "./contexts";
-import { getHistoryFromDB, getLikedVideosFromDB, getNotesFromDB, getPlaylistsFromDB, getVideosFromDB } from "./components/axios/axios.serverRequest";
+import { getHistoryFromDB, getNotesFromDB, getPlaylistsFromDB } from "./components/axios";
+import { getLikedVideosFromDB, getVideosFromDB } from "./components/axios/axios.serverRequest";
 function App() {
   const { themeColor } = useThemeContext();
   const{dispatch}=useStateContext();

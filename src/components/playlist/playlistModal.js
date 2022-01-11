@@ -1,5 +1,5 @@
 import { useAuthContext, useStateContext } from "../../contexts";
-import {AddOrRemoveFromPlaylist} from "../axios/axios.serverRequest"
+import { AddOrRemoveFromPlaylist } from "../axios";
 export function PlaylistModal({videoId}) {
     const {state:{playlists},dispatch}=useStateContext();
     const{authState:{userId}}=useAuthContext()

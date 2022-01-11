@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useStateContext,useAuthContext } from '../../contexts';
-import { loginHandler } from '../axios/axios.serverRequest';
+import { loginHandler } from '../axios';
 import './loginCard.css'
 export function Login(){
     const{authState:{userName,password},authDispatch}=useAuthContext();

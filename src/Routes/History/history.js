@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {useStateContext,useThemeContext,useAuthContext} from '../../contexts/index'; 
 import'./history.css'
 import '../likedVideos/likedVideos.css'
-import {historyHandler} from '../../components/axios/axios.serverRequest'
+import { historyHandler } from "../../components/axios";
 export function History(){
 const{state:{history},dispatch}=useStateContext();
 const{theme}=useThemeContext();

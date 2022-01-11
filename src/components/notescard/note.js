@@ -1,6 +1,6 @@
 import { useParams } from 'react-router';
 import { useStateContext } from '../../contexts/index';
-import { deleteNotesById, notesHandler } from '../axios/axios.serverRequest';
+import { deleteNotesById, notesHandler } from '../axios';
 import './note.css'
 
 export function Notes(){

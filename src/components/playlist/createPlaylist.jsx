@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthContext, useStateContext } from "../../contexts";
-import {  createNewPlalist } from "../axios/axios.serverRequest";
+import { addNewPlaylist } from "../axios";
 import './playlist.css'
 import { PlaylistModal } from "./playlistModal";
 export function CreateNewPlaylist({videoPlayingNow,setPlaylistContainer}){
@@ -24,7 +24,7 @@ return(
                  <label>Name:</label>  
                  <input type='text' value={newPlayListName} onChange={(e)=>setNewPlayListName(e.target.value)}/><br/>
                  <button type='submit' className='btn-create'
-                  onClick={()=>createNewPlalist(playlists,userId,_id,newPlayListName,dispatch,setNewPlayListName)}>
+                  onClick={()=>addNewPlaylist(playlists,userId,_id,newPlayListName,dispatch,setNewPlayListName)}>
                       Create</button>
             </div>
           }

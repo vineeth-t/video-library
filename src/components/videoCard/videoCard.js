@@ -1,6 +1,6 @@
 import {useStateContext,useAuthContext,useThemeContext} from '../../contexts/index'
 import { NavLink } from 'react-router-dom';
-import {historyHandler} from '../axios/axios.serverRequest'
+import { historyHandler } from '../axios';
 export function VideoCard({video}){
     const{dispatch}=useStateContext();
     const{authState:{userId}}=useAuthContext()
