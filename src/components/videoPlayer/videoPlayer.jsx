@@ -5,6 +5,7 @@ import './videoPlayer.css'
 import { useStateContext } from "../../contexts";
 import { Notes } from "../notescard/note";
 import { findCurrentVideo, likeUnlikeVideo } from "../axios/axios.serverRequest";
+import { getNotesFromDB } from "../axios";
 export function VideoPlayer() {
   const{state:{likedVideos},dispatch}=useStateContext();
   const[videoPlayingNow,setVideoPlayingNow]=useState(null);
@@ -12,7 +13,8 @@ export function VideoPlayer() {
   const navigate= useNavigate();
   let{videoId}=useParams();
   useEffect(()=>{
-    findCurrentVideo(setVideoPlayingNow,videoId,dispatch,navigate)
+    findCurrentVideo(setVideoPlayingNow,videoId,dispatch,navigate);
+    getNotesFromDB(dispatch,videoId)
   },[videoId,dispatch,navigate,likedVideos])
 
   return(

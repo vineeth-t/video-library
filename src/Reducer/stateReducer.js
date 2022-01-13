@@ -17,7 +17,7 @@ export function stateReducer(state,{type,payload}){
         case 'SET_NOTE_CONTENT':
             return {...state,note:payload}
          case 'SET_NOTES':
-                return{...state,notesHolder:payload,note:''}    
+                return{...state,notesFolder:payload,note:''}    
         default:
                 return {...state}
             

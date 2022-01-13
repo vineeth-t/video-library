@@ -11,8 +11,8 @@ const[state,dispatch]=useReducer(stateReducer, {
                                               history:[],
                                               checkBox:false,
                                               playlists:[],
-                                             note:'',
-                                             notesHolder:[]
+                                              note:'',
+                                              notesFolder:[]
                                           }
                                        )
                                  

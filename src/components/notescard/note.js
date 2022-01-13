@@ -1,28 +1,28 @@
 import { useParams } from 'react-router';
 import { useStateContext } from '../../contexts/index';
-import { deleteNotesById, notesHandler } from '../axios';
+import {  notesHandler } from '../axios';
 import './note.css'
 
 export function Notes(){
-    const{state:{note,notesHolder},dispatch}=useStateContext();
+    const{state:{note,notesFolder},dispatch}=useStateContext();
+    console.log({notesFolder})
     const{videoId}=useParams();
-    const notes=notesHolder?.find((notes)=>notes.videoId===videoId)
     return(
         <div className='notes-container'>
             <div style={{borderBottom:'2px solid red'}}>
                 <h3>Take Notes here</h3>
             </div>
            
-            {notes?.length!==0&&notes?.listOfNotes.map(({noteId,notesTaken})=>{
+            {notesFolder?.length!==0&&notesFolder.map((notesTaken)=>{
+
                 return <div className='notes-child'>{notesTaken}
-                        <button className='btn-remove' onClick={()=>deleteNotesById(videoId,noteId,dispatch)}
-                    >
+                        <button className='btn-remove' onClick={(e)=>notesHandler(e,videoId,notesTaken,dispatch,'DELETE')}>
                              x
                         </button>
                 </div>
             })}
             <div className='form-container'>
-            <form onSubmit={(event)=>notesHandler(event,videoId,note,notesHolder,dispatch)}>
+            <form onSubmit={(event)=>notesHandler(event,videoId,note,dispatch)}>
                  <input value={note} onChange={(event)=>dispatch({type:'SET_NOTE_CONTENT',payload:event.target.value})} className='notes-input' type='text' placeholder='Key points to be noted'/> 
             </form>
             </div>

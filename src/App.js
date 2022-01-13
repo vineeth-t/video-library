@@ -16,22 +16,21 @@ import { Login } from "./components/loginCard/login";
 import{SignUp} from './components/signUpCard/signUpCard'
 import { NavBottom } from "./components/navbar/navBottom/navBottom";
 import { useEffect } from "react";
-import { useAuthContext, useStateContext } from "./contexts";
-import { getHistoryFromDB, getNotesFromDB, getPlaylistsFromDB } from "./components/axios";
-import { getLikedVideosFromDB, getVideosFromDB } from "./components/axios/axios.serverRequest";
+import {  useAuthContext, useStateContext } from "./contexts";
+import {  getVideosFromDB } from "./components/axios/axios.serverRequest";
+import { getHistoryFromDB,getLikedVideosFromDB, getPlaylistsFromDB } from "./components/axios";
 function App() {
   const { themeColor } = useThemeContext();
   const{dispatch}=useStateContext();
-  const{authState:{userId}}= useAuthContext()
+  const{authDispatch:{token}}=useAuthContext()
   useEffect(()=>{
     getVideosFromDB(dispatch)
-    getNotesFromDB(dispatch)
   },[dispatch])
   useEffect(()=>{
-    getLikedVideosFromDB(userId,dispatch);
-    getHistoryFromDB(userId,dispatch);
-    getPlaylistsFromDB(userId,dispatch)
-  },[userId,dispatch])
+    getLikedVideosFromDB(dispatch);
+    getHistoryFromDB(dispatch);
+    getPlaylistsFromDB(dispatch)
+  },[token,dispatch])
  
 
   return (
