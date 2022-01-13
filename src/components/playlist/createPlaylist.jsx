@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useAuthContext, useStateContext } from "../../contexts";
+import {  useStateContext } from "../../contexts";
 import { addNewPlaylist } from "../axios";
 import './playlist.css'
 import { PlaylistModal } from "./playlistModal";
 export function CreateNewPlaylist({videoPlayingNow,setPlaylistContainer}){
     const{_id}=videoPlayingNow
     const {state:{playlists},dispatch}=useStateContext();
-    const {authState:{userId}}=useAuthContext();
     const[createNewPlaylist,setNewPlaylist]=useState(false);
     const[newPlayListName,setNewPlayListName]=useState()
   
@@ -24,7 +23,7 @@ return(
                  <label>Name:</label>  
                  <input type='text' value={newPlayListName} onChange={(e)=>setNewPlayListName(e.target.value)}/><br/>
                  <button type='submit' className='btn-create'
-                  onClick={()=>addNewPlaylist(playlists,userId,_id,newPlayListName,dispatch,setNewPlayListName)}>
+                  onClick={()=>addNewPlaylist(playlists,_id,newPlayListName,dispatch,setNewPlayListName)}>
                       Create</button>
             </div>
           }

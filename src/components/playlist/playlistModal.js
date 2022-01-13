@@ -1,12 +1,11 @@
-import { useAuthContext, useStateContext } from "../../contexts";
+import {  useStateContext } from "../../contexts";
 import { AddOrRemoveFromPlaylist } from "../axios";
 export function PlaylistModal({videoId}) {
     const {state:{playlists},dispatch}=useStateContext();
-    const{authState:{userId}}=useAuthContext()
   return  playlists.map(({playListName,_id})=>(
        <label style={{color:'black'}}>    
             <input type='checkbox' checked={checkBoxChanger(playlists,_id,videoId)}
-             onChange={()=>AddOrRemoveFromPlaylist(playlists,userId,_id,playListName,videoId,dispatch)}/>
+             onChange={()=>AddOrRemoveFromPlaylist(playlists,_id,playListName,videoId,dispatch)}/>
             <span>{playListName}</span>
         </label>
   ))}

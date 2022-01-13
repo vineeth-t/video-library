@@ -2,10 +2,9 @@ import axios from "axios";
 import { checkBoxChanger } from "../playlist/playlistModal";
 import { API } from "./axios.serverRequest";
 
-export async function getPlaylistsFromDB(userId,dispatch){
+export async function getPlaylistsFromDB(dispatch){
     try{
-      const {data:{response,playlists,message}}=await axios.get(`${API}/playlists/${userId}`)
-      console.log({playlists,response})
+      const {data:{response,playlists,message}}=await axios.get(`${API}/playlists/`)
       if(response){
         dispatch({type:'SET_PLAYLISTS',payload:playlists})
       }else{
@@ -19,11 +18,10 @@ export async function getPlaylistsFromDB(userId,dispatch){
   }
   
   
-  export async function AddOrRemoveFromPlaylist(playlists,userId,playListId,playListName,videoId,dispatch){
-    console.log(checkBoxChanger(playlists,playListId,videoId))
+  export async function AddOrRemoveFromPlaylist(playlists,playListId,playListName,videoId,dispatch){
     try{
       if(checkBoxChanger(playlists,playListId,videoId)){
-        const {data:{response,message,playlists}}=await axios.post(`${API}/playlists/${userId}/${playListId}`,{videoId,name:playListName,flag:'DELETE'})
+        const {data:{response,message,playlists}}=await axios.post(`${API}/playlists/${playListId}`,{videoId,name:playListName,flag:'DELETE'})
         if(response){
           dispatch({type:'SET_PLAYLISTS',payload:playlists})
           dispatch({type:'TOAST',payload:message});
@@ -31,7 +29,7 @@ export async function getPlaylistsFromDB(userId,dispatch){
              dispatch({type:'TOAST',payload:'playlist deleted'})
          }
       }else{
-        const {data:{response,message,playlists}}=await axios.post(`${API}/playlists/${userId}/${playListId}`,{videoId,name:playListName,flag:'ADD'})
+        const {data:{response,message,playlists}}=await axios.post(`${API}/playlists/${playListId}`,{videoId,name:playListName,flag:'ADD'})
         if(response){
           dispatch({type:'SET_PLAYLISTS',payload:playlists})
           dispatch({type:'TOAST',payload:message})
@@ -39,8 +37,6 @@ export async function getPlaylistsFromDB(userId,dispatch){
              dispatch({type:'TOAST',payload:'playlist deleted'})
          }
       }
-     
-      
     }catch(error){
       console.log(error);
       dispatch({type:'TOAST',PAYLOAD:'Refresh the Page'})
@@ -49,7 +45,7 @@ export async function getPlaylistsFromDB(userId,dispatch){
   
     
     }
-    export async function addNewPlaylist(playlists,userId,videoId,newPlayListName,dispatch,setNewPlayListName){
+    export async function addNewPlaylist(playlists,videoId,newPlayListName,dispatch,setNewPlayListName){
       if(newPlayListName===''||newPlayListName===undefined ){
           alert('Enter a name');
           dispatch({type:'TOAST',payload:'Name required'})
@@ -58,7 +54,7 @@ export async function getPlaylistsFromDB(userId,dispatch){
           dispatch({type:'TOAST',payload:'Name already exists'});
           setNewPlayListName('')
       }else{
-          const {data:{response,playlists,message}}=await axios.post(`${API}/playlists/${userId}`,{videoId,name:newPlayListName  })
+          const {data:{response,playlists,message}}=await axios.post(`${API}/playlists`,{videoId,name:newPlayListName  })
        if(response){
           dispatch({type:'SET_PLAYLISTS',payload:playlists})
           dispatch({type:'TOAST',payload:message})
@@ -69,9 +65,9 @@ export async function getPlaylistsFromDB(userId,dispatch){
       }
      
   }  
-    export async function deletePlaylist(userId,playlistId,dispatch){
+    export async function deletePlaylist(playlistId,dispatch){
       try{
-        const {data:{response,playlists}}=await axios.delete(`${API}/playlists/${userId}/${playlistId}`)
+        const {data:{response,playlists}}=await axios.delete(`${API}/playlists/${playlistId}`)
         if(response){
             dispatch({type:'SET_PLAYLISTS',payload:playlists,msg:'Playlist Deleted'})
         }else{
