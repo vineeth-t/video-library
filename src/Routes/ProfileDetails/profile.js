@@ -1,14 +1,12 @@
-import { useNavigate } from "react-router"
 import { useAuthContext } from "../../contexts"
+
+export function logoutHandler(authDispatch){
+    authDispatch({type:'LOGOUT'})
+    localStorage.removeItem('login')
+}
 
 export function Profile(){
     const{authState:{userName},authDispatch}=useAuthContext();
-    const navigate=useNavigate();
-    function logoutHandler(){
-        authDispatch({type:'LOGOUT'})
-        localStorage.removeItem('login')
-        navigate('/login')
-    }
     return(
             <div className='loginCard'>
                 <div className='login-details'>
@@ -17,7 +15,7 @@ export function Profile(){
                     </svg>
                     <h2>{userName}</h2>
                 </div>               
-                <button className='btn-logIn' onClick={logoutHandler}>Logout</button>
+                <button className='btn-logIn' onClick={()=>logoutHandler(authDispatch)}>Logout</button>
             </div>
        )
 
