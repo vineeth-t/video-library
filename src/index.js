@@ -10,15 +10,15 @@ import {
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      <ThemeContextProvider>
+    <Router>
+      <AuthProvider>
         <StateContextProvider>
-          <Router>
-            <App />
-          </Router>
+          <ThemeContextProvider>
+              <App />
+          </ThemeContextProvider>
         </StateContextProvider>
-      </ThemeContextProvider>
-    </AuthProvider>
+      </AuthProvider>
+	</Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
