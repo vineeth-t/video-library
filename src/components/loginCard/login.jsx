@@ -6,11 +6,11 @@ import './loginCard.css'
 export function Login(){
     const{authState:{userName,password},authDispatch}=useAuthContext();
     const {state}=useLocation();
-    const{disptach}=useStateContext
+    const{dispatch}=useStateContext();
     const navigate=useNavigate();
     return(
         <>
-            <form className='loginCard' onSubmit={(event)=>loginHandler(event,{state,userName:userName,password:password,authDispatch,navigate,disptach})}>
+            <form className='loginCard' onSubmit={(event)=>loginHandler(event,{state,userName:userName,password:password,authDispatch,navigate,dispatch})}>
                 <div >
                     <label> UserName : </label>
                     <input type='text' onChange={(event)=>authDispatch({type:'SET-USER-NAME',payload:event.target.value})}/>
@@ -22,7 +22,7 @@ export function Login(){
                 <button className='btn-logIn'>LogIn</button>
                 <button className='btn-logIn' onClick={(event)=>{authDispatch({type:'SET-USER-NAME',payload:"admin@gmail.com"})
                                                                           authDispatch({type:'SET-PASSWORD',payload:"admin@A1"})
-                                                                          loginHandler(event,{state,userName:'admin@gmail.com',password:'admin@A1',authDispatch,navigate})  
+                                                                          loginHandler(event,{state,userName:'admin@gmail.com',password:'admin@A1',authDispatch,navigate,dispatch})  
             }}>LogIn With Test Credentials</button>
                 <div >
                 New user?
