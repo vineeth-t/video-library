@@ -39,10 +39,6 @@ export async function likeUnlikeVideo(videoId,dispatch,userId){
   }
 }
 
-
-
-
-
 export async function getLikedVideosFromDB(userId,dispatch){
 
   try{
@@ -57,5 +53,19 @@ export async function getLikedVideosFromDB(userId,dispatch){
     dispatch({type:'TOAST',payload:'Refresh the Page'})
   }
 }
-
-
+export function setAuthorizationHeaderForServieCalls(token){
+  if(token){
+    return axios.defaults.headers.common['Authorization']=token
+  }return delete axios.defaults.headers.common['Authorization']
+}
+export function expectionHandlerForServiceCalls(logoutHandler,navigate,authDispatch){
+  const UNAUTHORIZED=401
+  axios.interceptors.response.use(response=>{
+    return response
+  },(error)=>{
+      if(error?.response?.status===UNAUTHORIZED){
+        logoutHandler(authDispatch)
+        navigate('/profile')
+      }return Promise.reject(error)
+  })
+}
