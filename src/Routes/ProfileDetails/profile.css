@@ -1,0 +1,50 @@
+.user-details{
+    font-size: x-large;
+    margin:2rem 0 0 10rem;
+}
+.password-modal{
+    position: absolute;
+    left:25rem;
+    color:black;
+    background-color: whitesmoke;
+    width:250px;
+    height:200px;
+}
+.section-fields{
+    margin:1rem;
+}
+.btn-logout-mobile-only{
+    display: none;
+}
+.btn-logout{
+    display: block;  
+}
+.btn{
+    color:white;
+    background-color: red;
+    margin:1rem;
+    padding:0.2rem;
+}
+.section-btn{
+    display: flex;
+
+}
+@media screen and (max-width:765px) {
+    .password-modal{
+        position: unset;
+    }
+    .user-details{
+        font-size: large;
+        margin:2rem 0 0 5rem;
+    }
+    .btn-logout-mobile-only{
+        display: block;
+        color:red;
+        background-color: transparent;
+        border:none;
+
+    }
+    .btn-logout{
+         display: none;  
+    }
+}

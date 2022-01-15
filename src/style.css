@@ -34,5 +34,3 @@ a{
 .svg-img-black{
     fill:var(--secondary-bg-color);
 }
-@media screen and (max-width:765px) {
-}

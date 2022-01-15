@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuthContext, useStateContext } from '../../contexts';
 import {useThemeContext} from '../../contexts/themeContext'
+import { logoutHandler } from '../../Routes/ProfileDetails/profile';
 import {LeftNav,Toast} from '../index'
 import './navBar.css';
 export function NavBar(){
-const{state:{toast}}=useStateContext();
+const{state:{toast},dispatch}=useStateContext();
 const{theme,themeColor,themeChanger}=useThemeContext();
 const[hamBug,setHambug]=useState(false)
-const{authState:{userName,login}}=useAuthContext()
+const{authState:{userName,login},authDispatch}=useAuthContext()
     return (  
        <>
          <nav style={themeColor} className='navbar'>
@@ -34,7 +35,12 @@ const{authState:{userName,login}}=useAuthContext()
                               <h6>{userName}</h6>
                               </Link>
                       </div>
-                    
+                      {login&&
+                        <button className='btn-logout-mobile-only' onClick={()=>logoutHandler(authDispatch,dispatch)}>
+                        <svg className='btn-logout-mobile-only' width="1.5em" height="1.5em" viewBox="0 0 24 24"><path d="M16 17v-3H9v-4h7V7l5 5l-5 5M14 2a2 2 0 0 1 2 2v2h-2V4H5v16h9v-2h2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9z" fill="currentColor"></path></svg>
+                         </button>
+                     }
+                   
               {theme==='light'?
                        <button className='navbar-theme' 
                              onClick={()=>themeChanger('dark')}>
