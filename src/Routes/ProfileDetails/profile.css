@@ -2,16 +2,24 @@
     font-size: x-large;
     margin:2rem 0 0 10rem;
 }
-.password-modal{
-    position: absolute;
-    left:25rem;
-    color:black;
-    background-color: whitesmoke;
-    width:250px;
-    height:200px;
-}
 .section-fields{
+  
     margin:1rem;
+}
+.password-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border:1px dotted white;
+    width:50%;
+    margin:auto;
+}
+.password-modal label{
+    width:50%;
+}
+.password-modal input{
+    width:40%;
 }
 .btn-logout-mobile-only{
     display: none;
@@ -29,9 +37,13 @@
     display: flex;
 
 }
+
 @media screen and (max-width:765px) {
     .password-modal{
-        position: unset;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width:50%;
     }
     .user-details{
         font-size: large;

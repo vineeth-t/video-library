@@ -1,8 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { useEffect } from "react/cjs/react.development";
+import { passwordChanger } from "../../components/axios";
 import { API } from "../../components/axios/axios.serverRequest";
 import { useAuthContext, useStateContext } from "../../contexts"
+import { passwordReducer } from "../../Reducer/editPasswordReducer";
 import './profile.css'
 export function logoutHandler(authDispatch,dispatch){
     authDispatch({type:'LOGOUT'})
@@ -38,23 +40,38 @@ export function Profile(){
                         <button className=' btn btn-logout' onClick={()=>logoutHandler(authDispatch,dispatch)}>Logout</button>
                     </div>    
             </section>
-            {passwordEditor&&<EditPasswordModal/>}      
+            {passwordEditor&&<EditPasswordModal setPasswordEditor={setPasswordEditor}/>}      
         </div>        
 
        )
 
 }
 
-export function EditPasswordModal(){
+
+
+
+export function EditPasswordModal({setPasswordEditor}){
+    const{dispatch}=useStateContext()
+    const[passwordState,passwordDispatcher]=useReducer(passwordReducer,{
+        newPassword:'',
+        confirmNewPassword:'',
+        currentPassword:''
+    })
     return(
-        <form >
+        <form className='password-modal'onSubmit={(e)=>passwordChanger(e,passwordState,dispatch,setPasswordEditor)}>
+            <div className="section-fields">
             <label >Current password : </label>
-            <input type='password'/>
-            <label >New Password : </label>
-            <input type='password'/>
-            <label >Confirm-New Password : </label>
-             <input type='password'/>
-     
+            <input onChange={(event)=>passwordDispatcher({type:'CURRENT_PASSWORD',payload:event.target.value})}type='password'/>
+            </div>
+            <div className="section-fields">
+                <label  >New Password : </label>
+                <input onChange={(event)=>passwordDispatcher({type:'NEW_PASSWORD',payload:event.target.value})} type='password'/>
+            </div>
+            <div className="section-fields">
+                <label  >Confirm-New Password : </label>
+                <input onChange={(event)=>passwordDispatcher({type:'CONFIRM_NEW_PASSWORD',payload:event.target.value})} type='password'/>
+             </div>
+            <button className='btn' type='submit'>Change</button>
         </form>
     )
 }

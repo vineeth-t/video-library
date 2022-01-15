@@ -49,4 +49,27 @@ export async function signUpHandler(e,errorDispatch,formState,authDispatch,formC
         dispatch({type:'TOAST',payload:error})
     }
   }
-  
+
+ export const passwordChanger=async(e,passwordState,dispatch,setPasswordEditor)=>{
+    const {newPassword,confirmNewPassword,currentPassword}=passwordState
+    e.preventDefault()
+    if(confirmNewPassword!=='' && newPassword!==''){
+        if(newPassword===confirmNewPassword ){
+            const {data:{response,message}}=await axios.post(`${API}/user`,{
+            currentPassword,newPassword
+            })
+            if(response){
+                console.log(message)
+                dispatch({type:'TOAST',payload:message})
+                setPasswordEditor(false)
+            }
+        
+        }else{
+            dispatch({type:'TOAST',payload:'Password not matching '})
+        }
+    }else{
+        dispatch({type:'TOAST',payload:'Enter Password'})
+    }
+    
+
+}
