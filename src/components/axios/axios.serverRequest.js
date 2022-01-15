@@ -1,5 +1,5 @@
 import axios from "axios"
-export const API = 'https://video-library-server-mongoose.vineetht.repl.co'
+export const API = 'https://fintube.herokuapp.com/'
 export async function getVideosFromDB(dispatch){
   try{
     const {data:{response,videos,message}}=await axios.get(`${API}/videos`)
