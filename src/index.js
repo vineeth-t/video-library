@@ -11,13 +11,13 @@ import {
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <AuthProvider>
         <StateContextProvider>
-          <ThemeContextProvider>
-              <App />
-          </ThemeContextProvider>
+          <AuthProvider>
+            <ThemeContextProvider>
+                <App />
+            </ThemeContextProvider>
+          </AuthProvider>
         </StateContextProvider>
-      </AuthProvider>
 	</Router>
   </React.StrictMode>,
   document.getElementById("root")
