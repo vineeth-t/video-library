@@ -11,7 +11,7 @@ export async function signUpHandler(e,errorDispatch,formState,authDispatch,formC
               setAuthorizationHeaderForServieCalls(token)
               localStorage?.setItem('login',JSON.stringify({isUserLoggedIn:true,
                                                             userName:name,
-                                                            token:token
+                                                            authToken:token
                                                           }))
               authDispatch({type:'LOGIN',payload:{userName:name,token}})
               navigate('/profile')
@@ -28,13 +28,12 @@ export async function signUpHandler(e,errorDispatch,formState,authDispatch,formC
     const{state,userName,password,authDispatch,navigate,dispatch}=loginDetails
     try{
       const {data:{response,name,message,token}}=await axios.post(`${API}/logIn`,{username:userName,password:password})
-      console.log(token)
       if(response){
           setAuthorizationHeaderForServieCalls(token)
           localStorage?.setItem('login',
                         JSON.stringify({isUserLoggedIn:true,
                                         userName:name,
-                                        token:token
+                                        authToken:token
                                       }))
           authDispatch({type:'LOGIN',payload:{userName:name,
                                               token

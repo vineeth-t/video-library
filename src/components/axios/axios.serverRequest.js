@@ -1,5 +1,5 @@
 import axios from "axios"
-export const API = 'https://fintube.herokuapp.com'
+export const API = 'https://video-library-server-mongoose-jwt.vineetht.repl.co'
 export async function getVideosFromDB(dispatch){
   try{
     const {data:{response,videos,message}}=await axios.get(`${API}/videos`)
@@ -54,6 +54,7 @@ export async function getLikedVideosFromDB(dispatch){
   }
 }
 export function setAuthorizationHeaderForServieCalls(token){
+  console.log({token})
   if(token){
     return axios.defaults.headers.common['Authorization']=token
   }return delete axios.defaults.headers.common['Authorization']

@@ -9,7 +9,7 @@ export function AuthProvider({ children }) {
   if(loginStatus?.isUserLoggedIn){
     initalState={
        login:true,
-       userName:loginStatus.username,
+       userName:loginStatus.userName,
        password:'',
        token:loginStatus.authToken
      }
