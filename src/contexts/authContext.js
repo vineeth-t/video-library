@@ -4,7 +4,7 @@ import { useEffect } from "react/cjs/react.development";
 import { expectionHandlerForServiceCalls, setAuthorizationHeaderForServieCalls } from "../components/axios";
 import {loginReducer} from '../Reducer/loginReducer'
 import { logoutHandler } from "../Routes/ProfileDetails/profile";
-const AuthContext = createContext();
+export const AuthContext = createContext();
 export function AuthProvider({ children }) {
 const navigate=useNavigate()
 let login,token;
