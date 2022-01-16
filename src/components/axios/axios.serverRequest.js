@@ -1,5 +1,5 @@
 import axios from "axios"
-export const API = 'https://fintube.herokuapp.com/'
+export const API = 'https://fintube.herokuapp.com'
 export async function getVideosFromDB(dispatch){
   try{
     const {data:{response,videos,message}}=await axios.get(`${API}/videos`)
@@ -60,9 +60,8 @@ export function setAuthorizationHeaderForServieCalls(token){
 }
 export function expectionHandlerForServiceCalls(logoutHandler,navigate,authDispatch){
   const UNAUTHORIZED=401
-  axios.interceptors.response.use(response=>{
-    return response
-  },(error)=>{
+  axios.interceptors.response.use(response=>response
+  ,(error)=>{
       if(error?.response?.status===UNAUTHORIZED){
         logoutHandler(authDispatch)
         navigate('/profile')
