@@ -1,6 +1,5 @@
 import axios from "axios";
-import {  setAuthorizationHeaderForServieCalls } from ".";
-import { API } from "./axios.serverRequest";
+import { API, setAuthorizationHeaderForServieCalls } from "./axios.serverRequest";
 
 export async function signUpHandler(e,errorDispatch,formState,authDispatch,formChecker,navigate,dispatch){
     console.log(formState)

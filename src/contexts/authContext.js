@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
-import { expectionHandlerForServiceCalls, setAuthorizationHeaderForServieCalls } from "../components/axios";
+import { expectionHandlerForServiceCalls, setAuthorizationHeaderForServieCalls } from "../components/axios/axios.serverRequest";
 import {loginReducer} from '../Reducer/loginReducer'
 import { logoutHandler } from "../Routes/ProfileDetails/profile";
 export const AuthContext = createContext();
