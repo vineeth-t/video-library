@@ -18,15 +18,15 @@ if(loginStatus?.isUserLoggedIn){
 }else{
   login=false;
 } 
+useEffect(()=>{
+  expectionHandlerForServiceCalls(logoutHandler, navigate,authDispatch);
+},[navigate])
 const[authState,authDispatch]=useReducer(loginReducer, {
   token,
   login,
   userName,
   password:''
 }) 
-useEffect(()=>{
-  expectionHandlerForServiceCalls(logoutHandler, navigate,authDispatch);
-},[navigate])
    return (
   <AuthContext.Provider value={{authState,authDispatch }}>
     {children}
