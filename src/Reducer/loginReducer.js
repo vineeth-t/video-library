@@ -8,7 +8,7 @@ export function loginReducer(state,{type,payload}){
             return {...state,login:true,userName:payload.userName,token:payload.token}
         case 'LOGOUT':
             return {...state,login:false,userName:'',password:''}
-            case 'SET_USER_DETAILS':
+        case 'SET_USER_DETAILS':
                 return{...state,name:payload.firstname+payload.lastname,emailId:payload.username}
         default: 
             return {...state}

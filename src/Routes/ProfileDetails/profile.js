@@ -18,9 +18,12 @@ export function Profile(){
     const[passwordEditor,setPasswordEditor]=useState(false)
     useEffect(()=>{
         (async()=>{
-               const {data:{response,firstname,lastname,username}}= await axios.get(`${API}/user`) ;
+              try{ 
+                const {data:{response,firstname,lastname,username}}= await axios.get(`${API}/user`) ;
               if(response){
                   authDispatch({type:'SET_USER_DETAILS',payload:{firstname,lastname,username}})
+              }}catch(error){
+                  console.log(error)
               }
         })()
     },[authDispatch])
