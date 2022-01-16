@@ -64,7 +64,7 @@ export function expectionHandlerForServiceCalls(logoutHandler,navigate,authDispa
   ,(error)=>{
       if(error?.response?.status===UNAUTHORIZED){
         logoutHandler(authDispatch)
-        navigate('/profile')
+        navigate('/login')
       }return Promise.reject(error)
   })
 }
