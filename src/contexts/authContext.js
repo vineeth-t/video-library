@@ -6,27 +6,32 @@ import {loginReducer} from '../Reducer/loginReducer'
 import { logoutHandler } from "../Routes/ProfileDetails/profile";
 export const AuthContext = createContext();
 export function AuthProvider({ children }) {
-const navigate=useNavigate()
-let login,token;
-let userName='';
-const loginStatus=JSON.parse(localStorage.getItem('login'))
-if(loginStatus?.isUserLoggedIn){
-  login=true
-  userName=loginStatus.userName
-  token=loginStatus.token;
-  setAuthorizationHeaderForServieCalls(token)
-}else{
-  login=false;
-} 
-useEffect(()=>{
-  expectionHandlerForServiceCalls(logoutHandler, navigate,authDispatch);
-},[navigate])
-const[authState,authDispatch]=useReducer(loginReducer, {
-  token,
-  login,
-  userName,
-  password:''
-}) 
+  const navigate=useNavigate()
+  const loginStatus= JSON.parse(localStorage.getItem('login'));
+  let initalState;
+  if(loginStatus?.isUserLoggedIn){
+    initalState={
+       login:true,
+       userName:loginStatus.username,
+       password:'',
+       token:loginStatus.authToken
+     }
+     setAuthorizationHeaderForServieCalls(loginStatus.authToken);
+     
+   }else{
+       initalState={
+           login:false,
+           name:'',
+           emailId:'',
+           userName:'',
+           password:'',
+           token:''
+         }
+   }
+   useEffect(() => {
+    expectionHandlerForServiceCalls(logoutHandler, navigate,authDispatch);
+ }, [navigate]);
+ const[authState,authDispatch]=useReducer(loginReducer, initalState)
    return (
   <AuthContext.Provider value={{authState,authDispatch }}>
     {children}
