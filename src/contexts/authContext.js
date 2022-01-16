@@ -1,12 +1,9 @@
 import { createContext, useContext, useReducer } from "react";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react/cjs/react.development";
-import { expectionHandlerForServiceCalls, setAuthorizationHeaderForServieCalls } from "../components/axios/axios.serverRequest";
+import {  setAuthorizationHeaderForServieCalls } from "../components/axios/axios.serverRequest";
 import {loginReducer} from '../Reducer/loginReducer'
-import { logoutHandler } from "../Routes/ProfileDetails/profile";
 export const AuthContext = createContext();
 export function AuthProvider({ children }) {
-  const navigate=useNavigate()
+
   const loginStatus= JSON.parse(localStorage.getItem('login'));
   let initalState;
   if(loginStatus?.isUserLoggedIn){
@@ -28,9 +25,6 @@ export function AuthProvider({ children }) {
            token:''
          }
    }
-   useEffect(() => {
-    expectionHandlerForServiceCalls(logoutHandler, navigate,authDispatch);
- }, [navigate]);
  const[authState,authDispatch]=useReducer(loginReducer, initalState)
    return (
   <AuthContext.Provider value={{authState,authDispatch }}>
