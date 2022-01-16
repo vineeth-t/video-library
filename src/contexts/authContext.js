@@ -6,6 +6,7 @@ import {loginReducer} from '../Reducer/loginReducer'
 import { logoutHandler } from "../Routes/ProfileDetails/profile";
 export const AuthContext = createContext();
 export function AuthProvider({ children }) {
+  console.log('1')
   const navigate=useNavigate()
   const loginStatus= JSON.parse(localStorage.getItem('login'));
   let initalState;
