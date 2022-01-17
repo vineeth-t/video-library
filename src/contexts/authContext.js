@@ -22,7 +22,7 @@ export function AuthProvider({ children }) {
    }
    useEffect(()=>{
     expectionHandlerForServiceCalls(logoutHandler,navigate,authDispatch)
-   })
+   },[navigate])
    const[authState,authDispatch]=useReducer(loginReducer, initalState)
    return (
   <AuthContext.Provider value={{authState,authDispatch}}>
