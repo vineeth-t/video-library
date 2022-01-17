@@ -1,8 +1,5 @@
-import axios from "axios";
 import { useReducer, useState } from "react";
-import { useEffect } from "react/cjs/react.development";
 import { passwordChanger } from "../../components/axios";
-import { API } from "../../components/axios/axios.serverRequest";
 import { useAuthContext, useStateContext } from "../../contexts"
 import { passwordReducer } from "../../Reducer/editPasswordReducer";
 import './profile.css'
@@ -11,28 +8,17 @@ export function logoutHandler(authDispatch,dispatch){
     dispatch({type:'TOAST',payload:'Logout success'})
     localStorage.removeItem('login')
 }
-
 export function Profile(){
-    const{authState:{name,emailId},authDispatch}=useAuthContext();
+    const{authState:{userName,emailId},authDispatch}=useAuthContext();
+    console.log(userName)
     const{dispatch}=useStateContext();
     const[passwordEditor,setPasswordEditor]=useState(false)
-    useEffect(()=>{
-        (async()=>{
-              try{ 
-                const {data:{response,firstname,lastname,username}}= await axios.get(`${API}/user`) ;
-              if(response){
-                  authDispatch({type:'SET_USER_DETAILS',payload:{firstname,lastname,username}})
-              }}catch(error){
-                  console.log(error)
-              }
-        })()
-    },[authDispatch])
     return( 
             <div>
                  <section className="user-details" >
                     <div className="section-fields">
-                        <label >UserName : </label>
-                        <span>{name}</span><br/>
+                        <label >Name : </label>
+                        <span>{userName}</span><br/>
                     </div>
                     <div className="section-fields">
                         <label >EmailId : </label>

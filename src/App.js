@@ -19,10 +19,11 @@ import { useEffect } from "react";
 import {  useAuthContext, useStateContext } from "./contexts";
 import {  getVideosFromDB } from "./components/axios/axios.serverRequest";
 import { getHistoryFromDB,getLikedVideosFromDB, getPlaylistsFromDB } from "./components/axios";
+import { getProfileDetails } from "./components/axios/axios.loginSignUp.handler";
 function App() {
   const { themeColor } = useThemeContext();
   const{dispatch}=useStateContext();
-  const{authDispatch:{token}}=useAuthContext()
+  const{authState:{token},authDispatch}=useAuthContext()
   useEffect(()=>{
     getVideosFromDB(dispatch)
   },[dispatch])
@@ -30,7 +31,8 @@ function App() {
     getLikedVideosFromDB(dispatch);
     getHistoryFromDB(dispatch);
     getPlaylistsFromDB(dispatch)
-  },[token,dispatch])
+    getProfileDetails(authDispatch)
+  },[token,dispatch,authDispatch])
  
 
   return (

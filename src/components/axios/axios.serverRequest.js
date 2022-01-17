@@ -28,7 +28,7 @@ const {data:{response,message,videoPlaying}}= await axios.get(`${API}/videos/${v
 
 export async function likeUnlikeVideo(videoId,dispatch){
   try{
-    const {data:{response,liked,message}}=await axios.post(`${API}/likedVideos/`,{videoId})
+    const {data:{response,liked,message}}=await axios.post(`${API}/likedVideos`,{videoId})
     if(response){
       dispatch({type:'SET_LIKED_VIDEOS',payload:{liked,message}})
     }else{
@@ -42,7 +42,7 @@ export async function likeUnlikeVideo(videoId,dispatch){
 export async function getLikedVideosFromDB(dispatch){
 
   try{
-    const {data:{response,liked,message}}=await axios.get(`${API}/likedVideos/`)
+    const {data:{response,liked,message}}=await axios.get(`${API}/likedVideos`)
     if(response){
       dispatch({type:'SET_LIKED_VIDEOS',payload:{liked}})
     }else{
@@ -54,7 +54,6 @@ export async function getLikedVideosFromDB(dispatch){
   }
 }
 export function setAuthorizationHeaderForServieCalls(token){
-  console.log({token})
   if(token){
     return axios.defaults.headers.common['Authorization']=token
   }return delete axios.defaults.headers.common['Authorization']

@@ -5,15 +5,14 @@ export async function signUpHandler(e,errorDispatch,formState,authDispatch,formC
     console.log(formState)
     e.preventDefault();
       if(formChecker(formState,errorDispatch)) {
-          const {data:{response,name,message,token}}=await axios.post(`${API}/signUp`,{firstname:formState.fname,lastname:formState.lname,username:formState.emailId,
+          const {data:{response,message,token}}=await axios.post(`${API}/signUp`,{firstname:formState.fname,lastname:formState.lname,username:formState.emailId,
           password:formState.password}) 
           if(response){
               setAuthorizationHeaderForServieCalls(token)
               localStorage?.setItem('login',JSON.stringify({isUserLoggedIn:true,
-                                                            userName:name,
-                                                            authToken:token
+                                                            token:token
                                                           }))
-              authDispatch({type:'LOGIN',payload:{userName:name,token}})
+              authDispatch({type:'LOGIN',payload:token})
               navigate('/profile')
           }else{
             console.log(response)
@@ -27,17 +26,14 @@ export async function signUpHandler(e,errorDispatch,formState,authDispatch,formC
     event.preventDefault ();
     const{state,userName,password,authDispatch,navigate,dispatch}=loginDetails
     try{
-      const {data:{response,name,message,token}}=await axios.post(`${API}/logIn`,{username:userName,password:password})
+      const {data:{response,message,token}}=await axios.post(`${API}/logIn`,{username:userName,password:password})
       if(response){
           setAuthorizationHeaderForServieCalls(token)
           localStorage?.setItem('login',
                         JSON.stringify({isUserLoggedIn:true,
-                                        userName:name,
-                                        authToken:token
+                                        token:token
                                       }))
-          authDispatch({type:'LOGIN',payload:{userName:name,
-                                              token
-                                            }})
+          authDispatch({type:'LOGIN',payload:token})
           navigate(state?.from?state.from:'/profile')
       }else{
         dispatch({type:'TOAST',payload:message})
@@ -57,7 +53,6 @@ export async function signUpHandler(e,errorDispatch,formState,authDispatch,formC
             currentPassword,newPassword
             })
             if(response){
-                console.log(message)
                 dispatch({type:'TOAST',payload:message})
                 setPasswordEditor(false)
             }
@@ -68,6 +63,15 @@ export async function signUpHandler(e,errorDispatch,formState,authDispatch,formC
     }else{
         dispatch({type:'TOAST',payload:'Enter Password'})
     }
-    
-
 }
+
+export const getProfileDetails= async(authDispatch)=>{
+        try{ 
+          const {data:{response,firstname,lastname,username}}= await axios.get(`${API}/user`) ;
+          console.log(response)
+        if(response){
+            authDispatch({type:'SET_USER_DETAILS',payload:{firstname,lastname,username}})
+        }}catch(error){
+            console.log(error)
+        }
+  }
