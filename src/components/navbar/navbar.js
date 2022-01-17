@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuthContext, useStateContext } from '../../contexts';
 import {useThemeContext} from '../../contexts/themeContext'
-import { logoutHandler } from '../../Routes/ProfileDetails/profile';
+import { logoutHandler } from '../axios/axios.loginSignUp.handler';
 import {LeftNav,Toast} from '../index'
 import './navBar.css';
 export function NavBar(){

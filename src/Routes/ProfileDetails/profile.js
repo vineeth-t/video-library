@@ -1,13 +1,9 @@
 import { useReducer, useState } from "react";
 import { passwordChanger } from "../../components/axios";
+import { logoutHandler } from "../../components/axios/axios.loginSignUp.handler";
 import { useAuthContext, useStateContext } from "../../contexts"
 import { passwordReducer } from "../../Reducer/editPasswordReducer";
 import './profile.css'
-export function logoutHandler(authDispatch,dispatch){
-    authDispatch({type:'LOGOUT'})
-    dispatch({type:'TOAST',payload:'Logout success'})
-    localStorage.removeItem('login')
-}
 export function Profile(){
     const{authState:{userName,emailId},authDispatch}=useAuthContext();
     console.log(userName)

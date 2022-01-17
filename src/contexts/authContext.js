@@ -1,8 +1,12 @@
 import { createContext, useContext, useReducer } from "react";
-import {  setAuthorizationHeaderForServieCalls } from "../components/axios/axios.serverRequest";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react/cjs/react.development";
+import { logoutHandler } from "../components/axios/axios.loginSignUp.handler";
+import {  expectionHandlerForServiceCalls, setAuthorizationHeaderForServieCalls } from "../components/axios/axios.serverRequest";
 import {loginReducer} from '../Reducer/loginReducer'
 export const AuthContext = createContext();
 export function AuthProvider({ children }) {
+  const navigate=useNavigate()
   const loginStatus= JSON.parse(localStorage.getItem('login'));
   let initalState={
     login:false,
@@ -16,6 +20,9 @@ export function AuthProvider({ children }) {
     initalState.token=loginStatus.token
     setAuthorizationHeaderForServieCalls(loginStatus.token);    
    }
+   useEffect(()=>{
+    expectionHandlerForServiceCalls(logoutHandler,navigate,authDispatch)
+   })
    const[authState,authDispatch]=useReducer(loginReducer, initalState)
    return (
   <AuthContext.Provider value={{authState,authDispatch}}>

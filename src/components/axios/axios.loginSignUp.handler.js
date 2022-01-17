@@ -43,7 +43,11 @@ export async function signUpHandler(e,errorDispatch,formState,authDispatch,formC
         dispatch({type:'TOAST',payload:error})
     }
   }
-
+  export function logoutHandler(authDispatch,dispatch){
+    authDispatch({type:'LOGOUT'})
+    dispatch({type:'TOAST',payload:'Logout success'})
+    localStorage.removeItem('login')
+}
  export const passwordChanger=async(e,passwordState,dispatch,setPasswordEditor)=>{
     const {newPassword,confirmNewPassword,currentPassword}=passwordState
     e.preventDefault()
