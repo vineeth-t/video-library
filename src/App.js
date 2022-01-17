@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import {
   LikedVideos,
   Home,
@@ -17,10 +17,11 @@ import{SignUp} from './components/signUpCard/signUpCard'
 import { NavBottom } from "./components/navbar/navBottom/navBottom";
 import { useEffect } from "react";
 import {  useAuthContext, useStateContext } from "./contexts";
-import {  getVideosFromDB } from "./components/axios/axios.serverRequest";
+import {  expectionHandlerForServiceCalls, getVideosFromDB } from "./components/axios/axios.serverRequest";
 import { getHistoryFromDB,getLikedVideosFromDB, getPlaylistsFromDB } from "./components/axios";
-import { getProfileDetails } from "./components/axios/axios.loginSignUp.handler";
+import { getProfileDetails, logoutHandler } from "./components/axios/axios.loginSignUp.handler";
 function App() {
+  const navigate=useNavigate()
   const { themeColor } = useThemeContext();
   const{dispatch}=useStateContext();
   const{authState:{token},authDispatch}=useAuthContext()
@@ -33,8 +34,9 @@ function App() {
     getPlaylistsFromDB(dispatch)
     getProfileDetails(authDispatch)
   },[token,dispatch,authDispatch])
- 
-
+  useEffect(()=>{
+    expectionHandlerForServiceCalls(logoutHandler,navigate,authDispatch)
+   },[navigate,authDispatch])
   return (
     <div style={themeColor} className="App">
       <NavBar />
