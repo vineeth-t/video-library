@@ -12,13 +12,13 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-            <StateContextProvider>
-                <ThemeContextProvider>
-                    <App />
-                </ThemeContextProvider>
-            </StateContextProvider>
-          </AuthProvider>
-	</Router>
+        <StateContextProvider>
+          <ThemeContextProvider>
+            <App />
+          </ThemeContextProvider>
+        </StateContextProvider>
+      </AuthProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );

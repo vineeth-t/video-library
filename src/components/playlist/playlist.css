@@ -1,95 +1,94 @@
-@import '../../style.css';
-.playlist-card{
-    position: fixed; 
-    z-index: 1; 
-    top:0;
-    left:0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto;
-    background-color: rgba(0,0,0,0.7)
+@import "../../style.css";
+.playlist-card {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
 }
-.playlist{
-    background-color: white;
-    color:black;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 20%;
-    font-weight: 900;
-    top:10rem;
- 
+.playlist {
+  background-color: white;
+  color: black;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20%;
+  font-weight: 900;
+  top: 10rem;
 }
-input[type='text']{
-    color:inherit;
-    font-weight: 900;
+input[type="text"] {
+  color: inherit;
+  font-weight: 900;
 }
-.playlist-creator{
-    display: flex;
-    flex-direction: column;
-    font-weight: 900;
+.playlist-creator {
+  display: flex;
+  flex-direction: column;
+  font-weight: 900;
 }
-.btn-submit{
-    color:black;
-    background-color: inherit;
-    font-weight: 900;
-    border:none;
+.btn-submit {
+  color: black;
+  background-color: inherit;
+  font-weight: 900;
+  border: none;
 }
-.btn-create{
-    width:5rem;
-    margin:auto;
-    font-weight: 900;
-    background-color: inherit;
+.btn-create {
+  width: 5rem;
+  margin: auto;
+  font-weight: 900;
+  background-color: inherit;
 }
-.btn-close{
-    position: absolute;
-    top:0;
-    right:0;
-    padding:0.5rem;
-    border:none;
-    background-color: inherit;
-    color:black;
-    font-weight: 900;
+.btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  border: none;
+  background-color: inherit;
+  color: black;
+  font-weight: 900;
 }
-.toast-close{
-    display: none;
+.toast-close {
+  display: none;
 }
-.btn-close:hover + .toast-close{
-    position: absolute;
-    top:1.5rem;
-    right:-3rem;
-    display: block;
-    border:1px solid white;
-    background-color:black;
-    color:white;
-    padding:0 0.5rem ;
+.btn-close:hover + .toast-close {
+  position: absolute;
+  top: 1.5rem;
+  right: -3rem;
+  display: block;
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+  padding: 0 0.5rem;
 }
-.playlist-header{
-    display: flex;
-    justify-content: center;
+.playlist-header {
+  display: flex;
+  justify-content: center;
 }
-.playlist-delete-btn{
-    background-color: inherit;
-    color:red;
-    border:none;
-    margin-left:1rem
+.playlist-delete-btn {
+  background-color: inherit;
+  color: red;
+  border: none;
+  margin-left: 1rem;
 }
-.sub-text{
-    display: none;
+.sub-text {
+  display: none;
 }
-.playlist-delete-btn:hover +.sub-text{
-    position: absolute;
-    top:6rem;
-    right:26rem;
-    padding:0 0.5rem 0 0.5rem;
-    border: 0.5px solid whitesmoke;
-    display:block
+.playlist-delete-btn:hover + .sub-text {
+  position: absolute;
+  top: 6rem;
+  right: 26rem;
+  padding: 0 0.5rem 0 0.5rem;
+  border: 0.5px solid whitesmoke;
+  display: block;
 }
-@media screen and (max-width: 768px){
-    .playlist{
-        width:50%
-    }
+@media screen and (max-width: 768px) {
+  .playlist {
+    width: 50%;
+  }
 }

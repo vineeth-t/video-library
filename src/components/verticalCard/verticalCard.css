@@ -1,34 +1,33 @@
-@import '../../style.css';
-.videoCard-vertical{
-     display: flex;
-     flex-direction: row;
-     width:500px;
-     margin-top:1rem;
-     padding:0.5rem;
+@import "../../style.css";
+.videoCard-vertical {
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+  margin-top: 1rem;
+  padding: 0.5rem;
 }
-.videoCard-thumbanil{
-    width:10rem;
-    margin-right: 1rem;
+.videoCard-thumbanil {
+  width: 10rem;
+  margin-right: 1rem;
 }
-.videoCard-details{
+.videoCard-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media screen and (max-width: 768px) {
+  .videoCard-vertical {
+    width: 300px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-}
-
-
-@media screen and (max-width: 768px){
-    .videoCard-vertical{
-        width:300px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding:0.5rem;
-   }
-   .videoCard-thumbanil{
-    width:18rem;
-}
-   .videoCard-details{
+    justify-content: center;
+    padding: 0.5rem;
+  }
+  .videoCard-thumbanil {
+    width: 18rem;
+  }
+  .videoCard-details {
     flex-wrap: wrap;
-   }
+  }
 }

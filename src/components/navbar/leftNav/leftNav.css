@@ -1,49 +1,48 @@
-@import '../../../style.css';
-.leftNav{
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    padding-left: 0.7rem;
-    height:200vh;
-    width:10rem;
-    z-index:1;
+@import "../../../style.css";
+.leftNav {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.7rem;
+  height: 200vh;
+  width: 10rem;
+  z-index: 1;
 }
 .leftNav-menuList {
-     margin-left:0;
-    list-style: none;
-    width: fit-content;
-    /* width-fitcontent is important */
-    font-weight: 800;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    cursor: pointer;
-    /* border-radius: 1.5rem; */
-    
-  }
-  .leftNav-menuList:hover {
-    fill: var( --secondary-color);
-    color: var( --secondary-color);
-  }
-  .hambug-view{
-    display: none;
-  }
-  .svg-image {
-    font-weight: 800;
-    width: 20px;
-    height: 1.75rem;
-    margin-right: 1em;
-  }
-  .navbar-theme{
-    margin-left: 0.5rem;
-    padding:0.5rem;
-  }
-  .active{
-    fill: var( --secondary-color);
-    color: var( --secondary-color);
-  }
-  .notLeftNav{
-    display: none;
+  margin-left: 0;
+  list-style: none;
+  width: fit-content;
+  /* width-fitcontent is important */
+  font-weight: 800;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  cursor: pointer;
+  /* border-radius: 1.5rem; */
+}
+.leftNav-menuList:hover {
+  fill: var(--secondary-color);
+  color: var(--secondary-color);
+}
+.hambug-view {
+  display: none;
+}
+.svg-image {
+  font-weight: 800;
+  width: 20px;
+  height: 1.75rem;
+  margin-right: 1em;
+}
+.navbar-theme {
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+}
+.active {
+  fill: var(--secondary-color);
+  color: var(--secondary-color);
+}
+.notLeftNav {
+  display: none;
 }
